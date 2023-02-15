@@ -1,4 +1,4 @@
-## React contact app built with MUI components includes IAM - *Authentication with JWT access, Refresh tokens, Cookies and Axios* 
+## React contact app built with MUI components includes IAM- *Authentication with JWT access, Refresh tokens, Cookies and Axios* 
 
 
 **Note:**
