@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import NavTabs from '../layout/NavTabs'; 
 import Box from '@mui/material/Box';
+import AppBar from '@mui/material/AppBar';
 
 const Dashboard = () => {
 
@@ -13,11 +14,13 @@ const Dashboard = () => {
 
     return (
         <>
-        <NavTabs val={0} />
         <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
             <CssBaseline />
-            <Box sx={{ mt: 2, mb: 4 }}>
+            <AppBar position="fixed" color="default">
+                <NavTabs val={0} />
+            </AppBar>
+            <Box sx={{ mt: 8, mb: 0 }}>
 
             
             {/* <Alert severity="error">This is an error alert — check it out!</Alert> */}

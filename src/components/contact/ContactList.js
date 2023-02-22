@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRef } from 'react';
 import useAxiosPrivate from "../../iam/hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -14,7 +15,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import PersonIcon from '@mui/icons-material/Person';
 
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 import useAuth from "../../iam/hooks/useAuth";
+import ExtSnackbar, {ERROR,INFO,SUCCESS} from "../custom/ExtSnackbar";
+import ExtCircularProgress from "../custom/ExtCircularProgress";
 
 const ContactList = (props) => {
 
@@ -26,6 +36,24 @@ const ContactList = (props) => {
 
     const { handleScreen } = props;
 
+    const [enableDelete, setEnableDelete] = useState(false);
+    const [deleteToggle, setDeleteToggle] = useState(false);
+    const [deleteElement, setDeleteElement] = useState({});
+    const [open, setOpen] = useState(false);
+    const handleClose = () => {
+      setOpen(false);
+    }; 
+    const handleDelete = (id, ix) => {
+        setDeleteElement({id, ix})
+        setOpen(true);
+    };  
+    const doDelete = () => {
+        console.log(deleteElement)
+        setOpen(false);
+        setEnableDelete(true)
+        setDeleteToggle(e => !e)
+    };  
+   
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
@@ -33,23 +61,52 @@ const ContactList = (props) => {
         const getContacts = async () => {
             try {
                 
-                if(auth?.fetchedContacts?.length>0){
+                if( !(props.fromScr=='add')  && auth?.fetchedContacts?.length>0){
+                    console.log('Fetching data from application context..')
+
                     // get contacts from app context if available
-                    isMounted && setContacts(auth?.fetchedContacts);
+                    if(auth?.selectedContact){
+                        const ctx = [];
+                        auth?.fetchedContacts.map(e=>{
+                          if (e._id && e._id === auth?.selectedContact._id ) 
+                            ctx.push( auth?.selectedContact ) 
+                          else if(e._id)  
+                            ctx.push( e )   
+                        })
+                        setAuth(json => {
+                            return {
+                                ...json,
+                                fetchedContacts : ctx
+                            }
+                        })                              
+                        setContacts(ctx);
+                        
+                    }else{
+                        setContacts(auth?.fetchedContacts);
+                    }
+                                        
+                   
                 }else{
+                    console.log('Fetching data from server..')
+                    // This server call only works for the first time for each login
+                    // rest of the times all contacts being fecth from the app context
                     const response = await axiosPrivate.get('/contacts', {
                         signal: controller.signal
                     });
-                    console.log(response.data);
+                    //console.log(response.data);
+                    
+                    //isMounted && setContacts([]);
                     isMounted && setContacts(response.data);
                     
-                    setAuth(prevFormData => {
+                    setAuth(json => {
                         return {
-                            ...prevFormData,
+                            ...json,
                             fetchedContacts : response.data
                         }
-                    })                    
+                    })
+                                        
                 }
+
             } catch (err) {
                 console.error(err);
                 navigate('/login', { state: { from: location }, replace: true });
@@ -62,72 +119,157 @@ const ContactList = (props) => {
             isMounted = false;
             controller.abort();
         }
+
     }, [])
+
+    useEffect(() => {
+        let isMounted = true;
+        const controller = new AbortController();
+
+        const deleteContact = async () => {
+            try {
+                const response = await axiosPrivate.post('/contacts/delete', {
+                    signal: controller.signal,
+                    contact: { _id: deleteElement.id }
+                });
+                isMounted && console.log(response.data);
+
+                handleShowSnackBar(SUCCESS);
+
+                const y = '' + ( (deleteElement.ix - 2)<0 ) ? 0 : (deleteElement.ix - 2)
+                setAuth(json => { 
+                    return { 
+                        ...json, 
+                        contactIndexID: y,
+                        //fetchedContacts: null
+                    } 
+                })
+
+                const ctx = [];
+                contacts.map(e=>{
+                  if (e._id != response.data._id ) 
+                    ctx.push( e )   
+                }) 
+                setContacts(ctx)               
+  
+                
+            } catch (err) {
+                console.error(err);
+
+                if(err.response.status==401){
+                    navigate('/login', { state: { from: location }, replace: true });
+                }
+                
+                handleShowSnackBar(ERROR);
+            }
+        }
+
+        enableDelete && deleteContact();
+
+        return () => {
+            isMounted = false;
+            controller.abort();
+            //console.log('aborted');
+        }
+    }, [deleteToggle])
+
+    useEffect(() => {
+        const x = ''+ ( (auth?.contactIndexID - 2) < 0 ? 0 : (auth?.contactIndexID - 2) );
+
+        if(auth?.contactIndexID){
+            const element = document.getElementById(x);
+            element && element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        return () => {
+        }
+    }, [contacts])
 
     const handleIconClicks = name => () => {
         console.log(name);
     }
     
-    const handleTest = (action, json) => {
-        console.log('handleTest');
+    const preHandleScreen = (action, json, i) => {
+        setAuth(e=> { return {...e, contactIndexID:i} } )
+        
         handleScreen(action,json);
     }
 
+    const childRef = useRef();
+
+    const handleShowSnackBar = (type, text) => {
+        childRef.current.showSnackBar(type, text);
+    };
+   
     const theme = createTheme();
     
     return (
         <>
-            <Box sx={ { pl: 1, borderRadius: 1, color: 'white', bgcolor: 'primary.main'} }>
-                <h3>Contacts</h3>
-            </Box>    
+            <Box sx={{ pt:14, px: 0, my: 0 }} ></Box>
             
-            <Box sx={{ mx: 0, my: 1 }}>
-                {contacts?.length
-                    ? (
-                        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+            <ExtSnackbar ref={childRef} />
+
+            <Box sx={{ mx: 0, my: 0 }} >
+                {   
+                    contacts?.length
+                    ? 
+                    (
+                        <List sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
                             {contacts.map((contact, i) => 
                                 <ListItem>
                                     <ListItemAvatar>
                                         <Avatar>
-                                            <PersonIcon />
+                                            <PersonIcon/>
                                         </Avatar>
                                     </ListItemAvatar>
 
-                                    <ListItemText key={i} primary={contact?.fname + ' ' + contact?.lname} secondary={contact?.lname} />
+                                    <ListItemText id={i}  key={i} primary={contact?.fname + ' ' + contact?.lname} secondary={contact?.cpse} />
                                     
-
-                                    {/* Directly executing imported handleScreen() function */}
-                                    {/* <IconButton aria-label="edit" onClick={()=>handleScreen('edit',contact)} >
-                                        <EditIcon />
-                                    </IconButton> */}
-                                    {/* Inside a local functon executing imported handleScreen() function */}
-                                    <IconButton aria-label="edit" onClick={()=>handleTest('edit',contact)} >
+                                    <IconButton aria-label="edit" onClick={()=>preHandleScreen('edit',contact, i)} >
                                         <EditIcon />
                                     </IconButton>  
 
-
-                                    <IconButton aria-label="delete" onClick={handleIconClicks('delete')}>
+                                    <IconButton aria-label="delete" onClick={ ()=>handleDelete(contact._id, i) }>
                                         <DeleteIcon />
                                     </IconButton>                                                                  
                                 </ListItem>
                             )}
                         </List>                        
-                    ) : <Alert severity="error">No users to display</Alert> 
+                    ) 
+                    : contacts?.length==0?
+                    <Alert severity="error">No users to display</Alert>
+                    :
+                    <Box sx={ { mt:3, width: '100%', justifyContent: 'center', display: 'flex' }}>
+                        <Alert severity="info" sx={ { backgroundColor: 'transparent' }}> Loading..
+                        </Alert>
+                        <ExtCircularProgress /> 
+                    </Box> 
                 }
             </Box> 
 
-            {/* 
-            <article>
-                <h2>Contacts</h2>
-                {contacts?.length
-                    ? (
-                        <ul>
-                            {contacts.map((contact, i) => <li key={i}>{contact?.fname} {contact?.lname}</li>)}
-                        </ul>
-                    ) : <p>No users to display</p>
-                }
-            </article>            
-            */}
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Delete contact"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Want to delete this contact?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>No</Button>
+                <Button onClick={doDelete} autoFocus>
+                  Yes
+                </Button>
+              </DialogActions>
+            </Dialog>
+
+
 
         </>
     );

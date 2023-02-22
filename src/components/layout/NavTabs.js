@@ -1,20 +1,14 @@
-// NavTabs.js
-
-// Favorite
-
-import { useNavigate, Link } from "react-router-dom";
-import useLogout from "../../iam/hooks/useLogout";
-
 import * as React from 'react';
+import { useNavigate, Link } from "react-router-dom";
+
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import PhoneIcon from '@mui/icons-material/Phone';
 import CottageIcon from '@mui/icons-material/Cottage';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
-import { Hidden } from '@mui/material';  
+
+import useLogout from "../../iam/hooks/useLogout";
 
 const NavTabs = (props) => {
     const [value, setValue] = React.useState(props.val);
@@ -54,9 +48,7 @@ const NavTabs = (props) => {
           <Tab icon={<ExitToAppIcon />} aria-label="Logout" />
         </Tabs>
         </>
-
-      );
-    
+    );
 
 }
 
