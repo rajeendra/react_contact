@@ -5,6 +5,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { InputAdornment } from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
+import SearchIcon from '@mui/icons-material/Search';
 
 import NavTabs from "../layout/NavTabs";
 import ContactList from "./ContactList";
@@ -13,21 +17,27 @@ import ContactEdit from "./ContactEdit";
 import ContactNumber from "./ContactNumber";
 
 import useAuth from "../../iam/hooks/useAuth";
+import useContactsSearch from "../hooks/useContactsSearch";
 import { AppBar } from "@mui/material";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 const Contact = () => {
+    
+    //console.log('Contact');
+
     const { id } = useParams();
     const { auth, setAuth } = useAuth(); 
 
+    const [contacts, setContacts] = useState();
+    const [searchFilter] = useContactsSearch();
+
     const [toScreen, setToScreen] = useState('list');
     const [fromScreen, setFromScreen] = useState('');
+    const [searchTxt, setSearchTxt] = useState(auth?.searchTxt ? auth?.searchTxt : '');
 
     const handleScreen = (toScr) => {
-        //setToScreen(toScr);
         setFromScreen(toScreen);
         setToScreen(toScr);
     }
@@ -61,6 +71,42 @@ const Contact = () => {
         handleScreen(view);
     }     
     
+    const handleSearch = (e) => {
+        const element = document.getElementById('searchTxt')
+        const sTxt = ( e =='click' ? element.value.trim() : auth?.searchTxt?.length>0 ? auth?.searchTxt : '')
+        
+        element.value=sTxt;
+        setSearchTxt(sTxt)
+        
+        setAuth(obj => {
+            return {
+                ...obj,
+                searchTxt : sTxt,
+            }
+        })        
+
+        const filteredResult = searchFilter(sTxt);
+        setContacts(filteredResult);        
+    }
+
+    const handleClear = () => {
+        const element = document.getElementById('searchTxt');
+        element.value = '';
+        setSearchTxt('')
+        setAuth(obj => {
+            return {
+                ...obj,
+                searchTxt : null
+            }
+        })         
+        setContacts(auth?.fetchedContacts);     
+    }
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        console.log(value);
+    };  
+
     const theme = createTheme();
 
     const screenTitle = () => {
@@ -75,11 +121,52 @@ const Contact = () => {
                                 //float: 'left'
                             }}
                         >
-                                <Box sx={ { px:1, py:1, mx:1, my:1, width: '100%', borderRadius: 1, color: 'white', bgcolor: 'primary.main'} }>
-                                    <Typography variant="h6" color="white">
+                                <Box sx={ { px:0, py:0, mt:2, mb:1, mr:1, color: 'white'} }>
+                                    <Typography sx={ { px:1, pt:.5, pb:.5, borderRadius: 1, bgcolor: 'primary.main'}} variant="h6" color="white">
                                         Contacts
                                     </Typography>                                
                                 </Box>
+                                                    {/* <Box sx={ { px:1, py:1, mr:1, my:1, borderRadius: 1, color: 'white', bgcolor: 'primary.main'} }>
+                                    <IconButton aria-label="edit" >
+                                        <EditIcon />
+                                    </IconButton>                                                                     
+                                </Box>                                                                   */}            <Box sx={ { height: 0, display: 'flex', float: 'right', px:0, py:0, mx:0, mb:0, width: '100%'} }>
+                                <TextField sx={ { py:0 }} size="small"
+                                    //error={!formErrors.fname ? false : true}
+                                    //helperText={formErrors.fname}                
+                                    margin="normal"
+                                    //required
+                                    //fullWidth
+                                    id="searchTxt"
+                                    //label="First Name"
+                                    label="Searh text"
+                                    name="searchTxt"
+                                    //autoComplete="on"
+                                    //autoFocus
+                                    //value={searchTxt}
+                                    //onChange={handleChange}
+                                    InputProps={{
+                                        startAdornment: (
+                                          <InputAdornment 
+                                          position="start"
+                                          onClick={()=>{ handleSearch('click') }}
+                                        >
+                                            <SearchIcon />
+                                          </InputAdornment>
+                                        ),
+                                        endAdornment: (
+                                          <InputAdornment
+                                            position="end"
+                                            //style={{ display: showEditIcon }}
+                                            onClick={handleClear}
+                                          >
+                                            <ClearIcon />
+                                          </InputAdornment>
+                                        )
+                                    }}                                    
+                                />
+                                </Box>
+
                                 <Box
                                     sx={{
                                         //display: 'inline-flex',
@@ -88,7 +175,7 @@ const Contact = () => {
                                         float: 'right',
                                     }}
                                 >
-                                        <Fab onClick={()=>handleScreen('add')} color="primary" aria-label="add" sx={{ mx:1, my:0}}>
+                                        <Fab size="small" onClick={()=>handleScreen('add')} color="primary" aria-label="add" sx={{ mx:1, mb:1, mt:2}}>
                                             <AddIcon />
                                         </Fab>
                                 </Box>                
@@ -189,7 +276,7 @@ const Contact = () => {
     const screenNavigate = () => {
         switch(toScreen) {
             // Nav back [Cancel/Save] - N/A | Nav forward - Edit/Add contact
-            case "list":    return <ContactList fromScr={fromScreen} handleScreen={handleContactScreen} />;
+            case "list":    return <ContactList searchTxt={searchTxt} contacts={contacts} setContacts={setContacts} handleSearch={handleSearch} fromScr={fromScreen} handleScreen={handleContactScreen} />;
 
             // Nav back [Cancel/Save] - Contact list | Nav forward - Edit/Add number
             case "edit":    return <ContactEdit fromScr={fromScreen} contact={auth?.selectedContact} handleScreen={handleNumbertScreen} />;
@@ -204,7 +291,7 @@ const Contact = () => {
 
             default: return <ContactList fromScr={fromScreen} handleScreen={handleContactScreen} />;
         }
-    }   
+    } 
     
     return (
         <>

@@ -28,13 +28,17 @@ import ExtCircularProgress from "../custom/ExtCircularProgress";
 
 const ContactList = (props) => {
 
-    const [contacts, setContacts] = useState();
+    //const [contacts, setContacts] = useState();
+    const {contacts} = props
+    const {setContacts} = props
+
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
     const { auth, setAuth } = useAuth(); 
 
     const { handleScreen } = props;
+    const { handleSearch } = props;
 
     const [enableDelete, setEnableDelete] = useState(false);
     const [deleteToggle, setDeleteToggle] = useState(false);
@@ -77,14 +81,19 @@ const ContactList = (props) => {
                             return {
                                 ...json,
                                 fetchedContacts : ctx
-                            }
-                        })                              
-                        setContacts(ctx);
+                            } 
+                        })
+
+                        // Follow useEffect will trigger
                         
-                    }else{
-                        setContacts(auth?.fetchedContacts);
+                        // useEffect(() => {
+                        //     handleSearch();
+                        // }, [auth?.fetchedContacts]);    
+
+                    }else {
+                        handleSearch();
                     }
-                                        
+
                    
                 }else{
                     console.log('Fetching data from server..')
@@ -93,18 +102,24 @@ const ContactList = (props) => {
                     const response = await axiosPrivate.get('/contacts', {
                         signal: controller.signal
                     });
-                    //console.log(response.data);
+
+                    console.log(response.data);
                     
-                    //isMounted && setContacts([]);
-                    isMounted && setContacts(response.data);
-                    
-                    setAuth(json => {
+                    isMounted  && setAuth(json => {
                         return {
                             ...json,
                             fetchedContacts : response.data
                         }
                     })
-                                        
+
+                    // Follow useEffect will trigger
+                    
+                    // useEffect(() => {
+                    //     handleSearch();
+                    // }, [auth?.fetchedContacts]);    
+
+                    //isMounted && setContacts([]);
+                    //isMounted && handleSearch();                    
                 }
 
             } catch (err) {
@@ -121,6 +136,10 @@ const ContactList = (props) => {
         }
 
     }, [])
+
+    useEffect(() => {
+        handleSearch();
+    }, [auth?.fetchedContacts]);    
 
     useEffect(() => {
         let isMounted = true;
@@ -268,9 +287,6 @@ const ContactList = (props) => {
                 </Button>
               </DialogActions>
             </Dialog>
-
-
-
         </>
     );
 
