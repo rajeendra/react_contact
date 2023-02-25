@@ -38,7 +38,7 @@ const ContactList = (props) => {
     const { auth, setAuth } = useAuth(); 
 
     const { handleScreen } = props;
-    const { handleSearch } = props;
+    const { handleFilterContacts } = props;
 
     const [enableDelete, setEnableDelete] = useState(false);
     const [deleteToggle, setDeleteToggle] = useState(false);
@@ -87,11 +87,11 @@ const ContactList = (props) => {
                         // Follow useEffect will trigger
                         
                         // useEffect(() => {
-                        //     handleSearch();
+                        //     handleFilterContacts();
                         // }, [auth?.fetchedContacts]);    
 
                     }else {
-                        handleSearch();
+                        handleFilterContacts();
                     }
 
                    
@@ -106,7 +106,7 @@ const ContactList = (props) => {
                     console.log(response.data);
                     
                     //isMounted && setContacts([]);
-                    //isMounted && handleSearch();                         
+                    //isMounted && handleFilterContacts();                         
                     isMounted  && setAuth(json => {
                         return {
                             ...json,
@@ -117,7 +117,7 @@ const ContactList = (props) => {
                     // Follow useEffect will trigger
                     
                     // useEffect(() => {
-                    //     handleSearch();
+                    //     handleFilterContacts();
                     // }, [auth?.fetchedContacts]);    
 
                 }
@@ -138,7 +138,7 @@ const ContactList = (props) => {
     }, [])
 
     useEffect(() => {
-        handleSearch();
+        handleFilterContacts();
     }, [auth?.fetchedContacts]);    
 
     useEffect(() => {

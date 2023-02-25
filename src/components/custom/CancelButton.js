@@ -14,7 +14,7 @@ const CancelButton = (props) => {
             type="submit"
             //fullWidth
             variant="contained"
-            sx={{ ml:1, mt: 3, mb: 2, color: '#455a64', bgcolor: '#cfd8dc',
+            sx={{ color: '#455a64', bgcolor: '#cfd8dc',
                     ':hover': {
                     color: '#455a64',
                     bgcolor: '#b0bec5' 

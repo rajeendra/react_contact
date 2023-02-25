@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRef } from 'react';
 import { useParams } from "react-router-dom";
 
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,19 +10,20 @@ import TextField from '@mui/material/TextField';
 import { InputAdornment } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
+import { AppBar } from "@mui/material";
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import Typography from '@mui/material/Typography';
 
 import NavTabs from "../layout/NavTabs";
 import ContactList from "./ContactList";
 import ContactAdd from "./ContactAdd";
 import ContactEdit from "./ContactEdit";
 import ContactNumber from "./ContactNumber";
+import ExtSnackbar, {ERROR,INFO,SUCCESS} from "../custom/ExtSnackbar";
 
 import useAuth from "../../iam/hooks/useAuth";
 import useContactsSearch from "../hooks/useContactsSearch";
-import { AppBar } from "@mui/material";
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import Typography from '@mui/material/Typography';
 
 const Contact = () => {
     
@@ -71,7 +73,7 @@ const Contact = () => {
         handleScreen(view);
     }     
     
-    const handleSearch = (e) => {
+    const handleFilterContacts = (e) => {
         const element = document.getElementById('searchTxt')
         const sTxt = ( e =='click' ? element.value.trim() : auth?.searchTxt?.length>0 ? auth?.searchTxt : '')
         
@@ -152,7 +154,7 @@ const Contact = () => {
                                             startAdornment: (
                                             <InputAdornment 
                                             position="start"
-                                            onClick={()=>{ handleSearch('click') }}
+                                            onClick={()=>{ handleFilterContacts('click') }}
                                             >
                                                 <SearchIcon />
                                             </InputAdornment>
@@ -266,10 +268,10 @@ const Contact = () => {
     const screenNavigate = () => {
         switch(toScreen) {
             // Nav back [Cancel/Save] - N/A | Nav forward - Edit/Add contact
-            case "list":    return <ContactList searchTxt={searchTxt} contacts={contacts} setContacts={setContacts} handleSearch={handleSearch} fromScr={fromScreen} handleScreen={handleContactScreen} />;
+            case "list":    return <ContactList searchTxt={searchTxt} contacts={contacts} setContacts={setContacts} handleFilterContacts={handleFilterContacts} fromScr={fromScreen} handleScreen={handleContactScreen} />;
 
             // Nav back [Cancel/Save] - Contact list | Nav forward - Edit/Add number
-            case "edit":    return <ContactEdit fromScr={fromScreen} contact={auth?.selectedContact} handleScreen={handleNumbertScreen} />;
+            case "edit":    return <ContactEdit childRef={childRef} fromScr={fromScreen} contact={auth?.selectedContact} handleScreen={handleNumbertScreen} />;
             
             // Nav back [Cancel/Save] - Contact list | Nav forward - Add number
             case "add":    return <ContactAdd fromScr={fromScreen} handleScreen={handleNumbertScreen} />;
@@ -279,14 +281,17 @@ const Contact = () => {
             // return from Contact add  - number pass is null
             case "number":  return <ContactNumber fromScr={fromScreen} number={auth?.selectedNumber} handleScreen={handleContactScreen} />;
 
-            default: return <ContactList fromScr={fromScreen} handleScreen={handleContactScreen} />;
+            default: return <ContactList searchTxt={searchTxt} contacts={contacts} setContacts={setContacts} handleFilterContacts={handleFilterContacts} fromScr={fromScreen} handleScreen={handleContactScreen} />;
         }
     } 
+
+    const childRef = useRef();
     
     return (
         <>
         <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
+            <ExtSnackbar ref={childRef} />
             <CssBaseline />
             <AppBar position="fixed" color="default">
                 <NavTabs val={1} />

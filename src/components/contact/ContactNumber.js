@@ -1,20 +1,8 @@
 import { useState, useEffect } from "react";
 
-import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import Box from '@mui/material/Box';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
 import Switch from '@mui/material/Switch';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -22,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import CancelButton from '../custom/CancelButton';
 
 import useAuth from "../../iam/hooks/useAuth";
-import { PedalBikeSharp } from '@mui/icons-material';
 
 /* { id: '631977da9b7d7339f05f8f06' } 
 
@@ -331,24 +318,21 @@ const ContactNumber = (props) => {
             <Box
                 sx={{
                     mt: 2,
-                    //display: 'inline-flex',
                     display: 'flex',
-                    //justifyContent: 'flex-start',
                     justifyContent:  'center'
-                    //float: 'left',
-                    //float: 'center'
                 }}
             >
                 <Button
                     type="submit"
                     //fullWidth
                     variant="contained"
-                    sx={{ ml:1, mt: 3, mb: 2 }}
                     onClick={ () => {handleConfirm('confirm');} }                    
                 >
-                Confirm
+                  Confirm
                 </Button>
 
+                <Box sx={{ mx:0.5}}></Box>
+                
                 <CancelButton onCBClick={handleCancel} />  
 
             </Box>

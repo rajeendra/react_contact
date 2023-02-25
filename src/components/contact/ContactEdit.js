@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useRef } from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -29,7 +28,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import useAxiosPrivate from '../../iam/hooks/useAxiosPrivate';
 import CancelButton from '../custom/CancelButton';
-import ExtSnackbar, {ERROR,INFO,SUCCESS} from "../custom/ExtSnackbar";
+import {ERROR,INFO,SUCCESS} from "../custom/ExtSnackbar";
 import useAuth from "../../iam/hooks/useAuth";
 
 /* { id: '631977da9b7d7339f05f8f06' } 
@@ -114,6 +113,7 @@ const ContactEdit = (props) => {
 
     const theme = createTheme();
     const { handleScreen } = props;
+    const { childRef } = props;
 
     const [open, setOpen] = React.useState(false);
     const handleDelete = (nmb) => {
@@ -276,21 +276,13 @@ const ContactEdit = (props) => {
       handleScreen(screen, num)
     }
 
-    const childRef = useRef();
- 
     const handleShowSnackBar = (type, text) => {
         childRef.current.showSnackBar(type, text);
     };
   
     return (
         <>
-            {/* <Box sx={ { pl: 1, borderRadius: 1, color: 'white', bgcolor: 'primary.main'} }>
-                <h3>Contact info</h3>
-            </Box>     */}
-
             <Box sx={{ pt:12, px: 0, my: 0 }} ></Box>
-
-            <ExtSnackbar ref={childRef} />
 
             <Box sx={{ mx: 0, my: 1 }}>
                 <TextField
@@ -341,45 +333,56 @@ const ContactEdit = (props) => {
 
             </Box>   
 
-
             <Box
                 sx={{
-                    display: 'inline-flex',
-                    justifyContent: 'flex-start',
-                    //float: 'left'
-                }}
+                  display: 'flex',
+                  flexDirection: 'row',                  
+                    //bgcolor: 'red',
+                }}            
             >
-                <Button
-                    type="submit"
-                    //fullWidth
-                    variant="contained"
-                    sx={{ ml:1, mt: 3, mb: 2 }}
-                    onClick={ () => {handleSave('save');} }                    
-                >
-                Save
-                </Button>
+                  <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'row',                  
+                          //bgcolor: 'red',
+                      }}
+                  >
 
-                <CancelButton onCBClick={handleCancel} />  
+                      <Button
+                          type="submit"
+                          variant="contained"
+                          onClick={ () => {handleSave('save');} }                    
+                      >
+                        Save
+                      </Button>
+                      
+                      <Box sx={{ mx:0.5}}></Box>  
+                      
+                      <CancelButton onCBClick={handleCancel} />  
 
-                <Switch sx={{ mt:3}}
-                    checked={checked}
-                    onChange={handleToggle}
-                    inputProps={{ 'aria-label': 'controlled' }}
-                />
+                      <Switch sx={{ mt:0}}
+                          checked={checked}
+                          onChange={handleToggle}
+                          inputProps={{ 'aria-label': 'controlled' }}
+                      />
 
-            </Box>
-            <Box
-                sx={{
-                    display: 'inline-flex',
-                    float: 'right',
-                }}
-            >
-                <Fab onClick={()=>preHandleScreen('number')} color="primary" aria-label="add" sx={{ mt:2, mr:2}}>
-                    <AddIcon />
-                </Fab>
-            </Box>
+                  </Box>
+                  <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'row-reverse',
+                          width: '100%'
 
-            <Box sx={{ mx: 0, my: 1 }}>
+                        }}
+                      >
+                        <Fab size="small"  onClick={()=>preHandleScreen('number')} color="primary" aria-label="add" sx={{ mt:0, mr:0}}>
+                          <AddIcon />
+                        </Fab>                      
+                  </Box>
+
+            </Box>     
+
+            <Box sx={{ mx: 0, my: 0 }}>
                     {formValues?.numbers?.length
                         ? (
                             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
