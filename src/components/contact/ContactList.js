@@ -105,6 +105,8 @@ const ContactList = (props) => {
 
                     console.log(response.data);
                     
+                    //isMounted && setContacts([]);
+                    //isMounted && handleSearch();                         
                     isMounted  && setAuth(json => {
                         return {
                             ...json,
@@ -118,8 +120,6 @@ const ContactList = (props) => {
                     //     handleSearch();
                     // }, [auth?.fetchedContacts]);    
 
-                    //isMounted && setContacts([]);
-                    //isMounted && handleSearch();                    
                 }
 
             } catch (err) {
@@ -224,7 +224,7 @@ const ContactList = (props) => {
     
     return (
         <>
-            <Box sx={{ pt:14, px: 0, my: 0 }} ></Box>
+            <Box sx={{ pt:12, px: 0, my: 0 }} ></Box>
             
             <ExtSnackbar ref={childRef} />
 

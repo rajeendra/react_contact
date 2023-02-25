@@ -224,7 +224,7 @@ const ContactNumber = (props) => {
 
     return (
         <>
-            <Box sx={{ pt:14, px: 0, my: 0 }} ></Box>  
+            <Box sx={{ pt:12, px: 0, my: 0 }} ></Box>  
 
             <Box sx={{ mx: 0, my: 1 }}>
               <TextField

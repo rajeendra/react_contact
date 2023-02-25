@@ -116,66 +116,74 @@ const Contact = () => {
                 return  <>
                         <Box
                             sx={{
+                                mt: .5,
+                                pt: 0,
+                                borderRadius: 1,
                                 display: 'inline-flex',
                                 justifyContent: 'flex-start',
+                                //bgcolor: 'primary.light',
+                                bgcolor: 'primary.main',
                                 //float: 'left'
                             }}
                         >
-                                <Box sx={ { px:0, py:0, mt:2, mb:1, mr:1, color: 'white'} }>
-                                    <Typography sx={ { px:1, pt:.5, pb:.5, borderRadius: 1, bgcolor: 'primary.main'}} variant="h6" color="white">
+                                <Box sx={ { bgcolor: 'primary.main', pl:2, pr:1, pt:0.5, mr:1, color: 'white'} }>
+                                    <Typography sx={ { px:1, my: 0.5, py:0, borderRadius: 1, bgcolor: 'primary.main'}} variant="h6" color="white">
                                         Contacts
                                     </Typography>                                
                                 </Box>
-                                                    {/* <Box sx={ { px:1, py:1, mr:1, my:1, borderRadius: 1, color: 'white', bgcolor: 'primary.main'} }>
-                                    <IconButton aria-label="edit" >
-                                        <EditIcon />
-                                    </IconButton>                                                                     
-                                </Box>                                                                   */}            <Box sx={ { height: 0, display: 'flex', float: 'right', px:0, py:0, mx:0, mb:0, width: '100%'} }>
-                                <TextField sx={ { py:0 }} size="small"
-                                    //error={!formErrors.fname ? false : true}
-                                    //helperText={formErrors.fname}                
-                                    margin="normal"
-                                    //required
-                                    //fullWidth
-                                    id="searchTxt"
-                                    //label="First Name"
-                                    label="Searh text"
-                                    name="searchTxt"
-                                    //autoComplete="on"
-                                    //autoFocus
-                                    //value={searchTxt}
-                                    //onChange={handleChange}
-                                    InputProps={{
-                                        startAdornment: (
-                                          <InputAdornment 
-                                          position="start"
-                                          onClick={()=>{ handleSearch('click') }}
-                                        >
-                                            <SearchIcon />
-                                          </InputAdornment>
-                                        ),
-                                        endAdornment: (
-                                          <InputAdornment
-                                            position="end"
-                                            //style={{ display: showEditIcon }}
-                                            onClick={handleClear}
-                                          >
-                                            <ClearIcon />
-                                          </InputAdornment>
-                                        )
-                                    }}                                    
-                                />
+
+                                <Box sx={ { bgcolor: 'primary.main', display: 'flex', float: 'right', px:1, py:0, mx:0, my:0, width: '100%'} }>
+                                    
+                                    <TextField sx={ { my: 0.5, py:0, bgcolor: 'white' }} size="small"
+                                        //error={!formErrors.fname ? false : true}
+                                        //helperText={formErrors.fname}                
+                                        margin="normal"
+                                        //required
+                                        //fullWidth
+                                        id="searchTxt"
+                                        //label="First Name"
+                                        //label="Searh text"
+                                        name="searchTxt"
+                                        //autoComplete="on"
+                                        //autoFocus
+                                        //value={searchTxt}
+                                        //onChange={handleChange}
+                                        InputProps={{
+                                            startAdornment: (
+                                            <InputAdornment 
+                                            position="start"
+                                            onClick={()=>{ handleSearch('click') }}
+                                            >
+                                                <SearchIcon />
+                                            </InputAdornment>
+                                            ),
+                                            endAdornment: (
+                                            <InputAdornment
+                                                position="end"
+                                                //style={{ display: showEditIcon }}
+                                                onClick={handleClear}
+                                            >
+                                                <ClearIcon />
+                                            </InputAdornment>
+                                            )
+                                        }}                                    
+                                    />
+
                                 </Box>
 
                                 <Box
                                     sx={{
+                                        bgcolor: 'primary.main',
+                                        py: 0,
+                                        my: 0,
+                                        px:.5,
                                         //display: 'inline-flex',
                                         display: 'flex',
                                         //justifyContent: 'flex-end',
                                         float: 'right',
                                     }}
                                 >
-                                        <Fab size="small" onClick={()=>handleScreen('add')} color="primary" aria-label="add" sx={{ mx:1, mb:1, mt:2}}>
+                                        <Fab size="small" onClick={()=>handleScreen('add')} color="primary" aria-label="add" sx={{ mx:1, my: 0.5, py:0}}>
                                             <AddIcon />
                                         </Fab>
                                 </Box>                
@@ -186,28 +194,22 @@ const Contact = () => {
                 return  <>
                         <Box
                             sx={{
+                                mt: .5,
+                                pt: 0,
+                                borderRadius: 1,
                                 display: 'inline-flex',
                                 justifyContent: 'flex-start',
+                                //bgcolor: 'primary.light',
+                                bgcolor: 'primary.main',
                                 //float: 'left'
                             }}
                         >
-                                <Box sx={ { px:1, py:1, mx:1, my:1, width: '100%', borderRadius: 1, color: 'white', bgcolor: 'primary.main'} }>
-                                    <Typography variant="h6" color="white">
+
+                                <Box sx={ { bgcolor: 'primary.main', pl:2, pr:1, pt:0.5, mr:1, color: 'white'} }>
+                                    <Typography sx={ { px:1, my: 0.5, py:0, borderRadius: 1, bgcolor: 'primary.main'}} variant="h6" color="white">
                                         Contact info
                                     </Typography>                                
                                 </Box>
-                                <Box
-                                    sx={{
-                                        //display: 'inline-flex',
-                                        display: 'flex',
-                                        //justifyContent: 'flex-end',
-                                        float: 'right',
-                                    }}
-                                >
-                                        {/* <Fab color="primary" aria-label="add" sx={{ mx:1, my:0}}>
-                                            <AddIcon />
-                                        </Fab> */}
-                                </Box>                
                         </Box>
                         </>   
             
@@ -215,58 +217,46 @@ const Contact = () => {
                 return  <>
                         <Box
                             sx={{
+                                mt: .5,
+                                pt: 0,
+                                borderRadius: 1,
                                 display: 'inline-flex',
                                 justifyContent: 'flex-start',
+                                //bgcolor: 'primary.light',
+                                bgcolor: 'primary.main',
                                 //float: 'left'
                             }}
                         >
-                                <Box sx={ { px:1, py:1, mx:1, my:1, width: '100%', borderRadius: 1, color: 'white', bgcolor: 'primary.main'} }>
-                                    <Typography variant="h6" color="white">
+
+                                <Box sx={ { bgcolor: 'primary.main', pl:2, pr:1, pt:0.5, mr:1, color: 'white'} }>
+                                    <Typography sx={ { px:1, my: 0.5, py:0, borderRadius: 1, bgcolor: 'primary.main'}} variant="h6" color="white">
                                         Contact info
                                     </Typography>                                
                                 </Box>
-                                <Box
-                                    sx={{
-                                        //display: 'inline-flex',
-                                        display: 'flex',
-                                        //justifyContent: 'flex-end',
-                                        float: 'right',
-                                    }}
-                                >
-                                        {/* <Fab color="primary" aria-label="add" sx={{ mx:1, my:0}}>
-                                            <AddIcon />
-                                        </Fab> */}
-                                </Box>                
                         </Box>
                         </>   
 
             case "number": 
             return  <>
-                    <Box
-                        sx={{
-                            display: 'inline-flex',
-                            justifyContent: 'flex-start',
-                            //float: 'left'
-                        }}
-                    >
-                            <Box sx={ { px:1, py:1, mx:1, my:1, width: '100%', borderRadius: 1, color: 'white', bgcolor: 'primary.main'} }>
-                                <Typography variant="h6" color="white">
-                                    Number info
-                                </Typography>                                
-                            </Box>
-                            <Box
-                                sx={{
-                                    //display: 'inline-flex',
-                                    display: 'flex',
-                                    //justifyContent: 'flex-end',
-                                    float: 'right',
-                                }}
-                            >
-                                    {/* <Fab color="primary" aria-label="add" sx={{ mx:1, my:0}}>
-                                        <AddIcon />
-                                    </Fab> */}
-                            </Box>                
-                    </Box>
+                        <Box
+                            sx={{
+                                mt: .5,
+                                pt: 0,
+                                borderRadius: 1,
+                                display: 'inline-flex',
+                                justifyContent: 'flex-start',
+                                //bgcolor: 'primary.light',
+                                bgcolor: 'primary.main',
+                                //float: 'left'
+                            }}
+                        >
+
+                                <Box sx={ { bgcolor: 'primary.main', pl:2, pr:1, pt:0.5, mr:1, color: 'white'} }>
+                                    <Typography sx={ { px:1, my: 0.5, py:0, borderRadius: 1, bgcolor: 'primary.main'}} variant="h6" color="white">
+                                        Number info
+                                    </Typography>                                
+                                </Box>
+                        </Box>
                     </>   
 
             default:        return <ContactList handleScreen={handleContactScreen} />;

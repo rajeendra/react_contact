@@ -280,7 +280,7 @@ const ContactAdd = (props) => {
               <h3>Contact info</h3>
           </Box>     */}
 
-          <Box sx={{ pt:14, px: 0, my: 0 }} ></Box>
+          <Box sx={{ pt:12, px: 0, my: 0 }} ></Box>
 
           <ExtSnackbar ref={childRef} />
 
