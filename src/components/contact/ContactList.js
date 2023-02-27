@@ -256,7 +256,9 @@ const ContactList = (props) => {
                         </List>                        
                     ) 
                     : contacts?.length==0?
-                    <Alert severity="error">No users to display</Alert>
+                    <Box sx={ { mt:3 }}>
+                        <Alert severity="error">No users to display</Alert>
+                    </Box> 
                     :
                     <Box sx={ { mt:3, width: '100%', justifyContent: 'center', display: 'flex' }}>
                         <Alert severity="info" sx={ { backgroundColor: 'transparent' }}> Loading..

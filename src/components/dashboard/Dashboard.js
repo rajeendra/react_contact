@@ -20,14 +20,11 @@ const Dashboard = () => {
             <AppBar position="fixed" color="default">
                 <NavTabs val={0} />
             </AppBar>
-            <Box sx={{ mt: 8, mb: 0 }}>
-
-            
-            {/* <Alert severity="error">This is an error alert — check it out!</Alert> */}
-            {/* <Alert severity="warning">This is a warning alert — check it out!</Alert> */}
-            {/* <Alert severity="info">This is an info alert — check it out!</Alert> */}
-            <Alert severity="success">Check home page out!</Alert>            
+            <Box sx={{ pt:7, px: 0, my: 0 }} ></Box>
+            <Box sx={{ mx: 0, my: 1 }}>
+                <Alert severity="info">Check home page out!</Alert>              
             </Box>
+
         </Container>
         </ThemeProvider>        
         </>

@@ -7,6 +7,7 @@ import CottageIcon from '@mui/icons-material/Cottage';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 import useLogout from "../../iam/hooks/useLogout";
 
@@ -27,6 +28,9 @@ const NavTabs = (props) => {
         navigate('/favorite');
       }                    
       if(newValue==3){
+        navigate('/admin');
+      }                    
+      if(newValue==4){
           signOut();
       }
     };
@@ -41,10 +45,11 @@ const NavTabs = (props) => {
 
     return (
         <>
-        <Tabs value={value} onChange={handleChange} aria-label="icon tabs example">
+        <Tabs value={value} onChange={handleChange} variant="scrollable" aria-label="icon tabs example">
           <Tab icon={<CottageIcon />} aria-label="home" />
           <Tab icon={<ContactPhoneIcon />} aria-label="contacts" />
           <Tab icon={<FavoriteIcon />} aria-label="Favorite" />
+          <Tab icon={<SettingsIcon />} aria-label="Settings" />
           <Tab icon={<ExitToAppIcon />} aria-label="Logout" />
         </Tabs>
         </>

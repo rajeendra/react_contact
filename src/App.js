@@ -1,11 +1,11 @@
-import Gateway from './route/Gateway';
+import Home from './components/home/Home';
 import { useState } from 'react';
 import Test from './test/Test';
 
 function App() {
   
   return (
-    <Gateway />
+    <Home />
     // <Test />
   );
 

@@ -4,6 +4,19 @@ function Test() {
   
   const timestamp = new Date().getTime();
 
+  const [biz, setBiz] = useState(
+    { 
+      id:'001', 
+      name:'Kent', 
+      active:true,
+      numbers: [
+        { number: '0777111' , type: 'land'},
+        { number: '0777222' , type: 'work'}
+      ]
+  
+    }
+  );
+
   const [value, setValue] = useState('val99');
   
   const attributeObj = {
@@ -28,6 +41,10 @@ function Test() {
 
   const obj = {...attributeObj}
 
+  const setBizState = (obj) => {
+    setBiz( {...biz, ...obj })
+  }
+
   const testFun = (arg1, arg2) => {
   
     console.log('............... Test start ...............');
@@ -37,21 +54,37 @@ function Test() {
 
     //console.log(number.type ? number.type: 'no type')
     //console.log(number?.type?.length==4 ?number.type: 'wrong length')
-    console.log(
-        numberInOp.substring(1,2)=='o'
-        ?'personal'
-        : numberInOp.substring(1,2)=='w'
-        ?'official'
-        :'personal' 
-     )
+
+    // console.log(
+    //     numberInOp.substring(1,2)=='o'
+    //     ?'personal'
+    //     : numberInOp.substring(1,2)=='w'
+    //     ?'official'
+    //     :'personal' 
+    //  )
+
     //console.log(numberInOp.substring(2,3) )
-    console.log(
-        numberInOp.substring(2,3)=='m'
-        ?'mob'
-        : numberInOp.substring(2,3)=='l'
-        ?'fixed'
-        :'mob' 
-     )    
+    // console.log(
+    //     numberInOp.substring(2,3)=='m'
+    //     ?'mob'
+    //     : numberInOp.substring(2,3)=='l'
+    //     ?'fixed'
+    //     :'mob' 
+    //  ) 
+
+    const x = { 
+      name : 'Peter', 
+      id : '002', 
+      active: false, 
+      numbers: [
+        { number: '0777333' , type: 'work'},
+        { number: '0777444' , type: 'land'}
+      ]
+
+    };
+    setBizState(x);
+
+    console.log(biz)
     
     console.log('............... Test end ...............');
   
