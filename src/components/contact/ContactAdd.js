@@ -175,21 +175,6 @@ const ContactAdd = (props) => {
               });
               isMounted && console.log(response.data);
 
-              // setAuth(json => {
-              //   return {
-              //       ...json,
-              //       selectedContact : response.data
-              //   }
-              // })   
-              
-              // setAuth(json => {
-              //   return {
-              //       ...json,
-              //       fetchedContacts : [...json.fetchedContacts,  response.data]
-              //   }
-              // })                
-
-            //handleShowSnackBar(SUCCESS, "success");
               handleShowSnackBar(SUCCESS);
               
               const x = ''+ auth?.fetchedContacts?.length;
@@ -204,11 +189,7 @@ const ContactAdd = (props) => {
                   navigate('/login', { state: { from: location }, replace: true });
               }
               
-            //handleShowSnackBar(ERROR, "error"); 
               handleShowSnackBar(ERROR);
-              
-            //handleShowSnackBar(INFO, "info");
-              
           }
       }
 
@@ -258,7 +239,7 @@ const ContactAdd = (props) => {
   
   const preHandleScreen = (screen, num) => {
     // Navigate to number screen
-    // to retain the user typed text on come back
+    // to retain the user typed text on return back
     setAuth(json => {
       return {
           ...json,
@@ -276,10 +257,6 @@ const ContactAdd = (props) => {
 
   return (
       <>
-          {/* <Box sx={ { pl: 1, borderRadius: 1, color: 'white', bgcolor: 'primary.main'} }>
-              <h3>Contact info</h3>
-          </Box>     */}
-
           <Box sx={{ pt:12, px: 0, my: 0 }} ></Box>
 
           {/* <ExtSnackbar ref={childRef} /> */}
