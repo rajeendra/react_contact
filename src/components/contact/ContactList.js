@@ -56,7 +56,14 @@ const ContactList = (props) => {
         setOpen(false);
         setEnableDelete(true)
         setDeleteToggle(e => !e)
-    };  
+    }; 
+    
+    useEffect( () => 
+        () => { 
+            console.log("unmount")
+            setContacts();
+        }    
+    , [] );
    
     useEffect(() => {
         let isMounted = true;
@@ -230,7 +237,7 @@ const ContactList = (props) => {
 
             <Box sx={{ mx: 0, my: 0 }} >
                 {   
-                    contacts?.length
+                    contacts?.length > 0
                     ? 
                     (
                         <List sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>

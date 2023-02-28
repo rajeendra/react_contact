@@ -274,7 +274,7 @@ const Contact = () => {
             case "edit":    return <ContactEdit childRef={childRef} fromScr={fromScreen} contact={auth?.selectedContact} handleScreen={handleNumbertScreen} />;
             
             // Nav back [Cancel/Save] - Contact list | Nav forward - Add number
-            case "add":    return <ContactAdd fromScr={fromScreen} handleScreen={handleNumbertScreen} />;
+            case "add":    return <ContactAdd childRef={childRef} fromScr={fromScreen} handleScreen={handleNumbertScreen} />;
 
             // Nav back [Cancel/Save] - Edit contact | Nav forward - N/A
             // return from Contact edit - number pass is auth?.selectedNumber

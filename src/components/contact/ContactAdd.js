@@ -74,7 +74,7 @@ const ContactAdd = (props) => {
   const [checked, setChecked] = useState(true);
 
   const theme = createTheme();
-  const { handleScreen } = props;
+  const { handleScreen, childRef } = props;
 
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -268,7 +268,7 @@ const ContactAdd = (props) => {
     handleScreen(screen, num)
   }
   
-  const childRef = useRef();
+  //const childRef = useRef();
 
   const handleShowSnackBar = (type, text) => {
       childRef.current.showSnackBar(type, text);
@@ -282,7 +282,7 @@ const ContactAdd = (props) => {
 
           <Box sx={{ pt:12, px: 0, my: 0 }} ></Box>
 
-          <ExtSnackbar ref={childRef} />
+          {/* <ExtSnackbar ref={childRef} /> */}
 
           <Box sx={{ mx: 0, my: 1 }}>
               <TextField
@@ -333,45 +333,58 @@ const ContactAdd = (props) => {
 
           </Box>   
 
-
           <Box
-              sx={{
-                  display: 'inline-flex',
-                  justifyContent: 'flex-start',
-                  //float: 'left'
-              }}
-          >
-              <Button
-                  type="submit"
-                  //fullWidth
-                  variant="contained"
-                  sx={{ ml:1, mt: 3, mb: 2 }}
-                  onClick={ () => {handleSave('save');} }                    
-              >
-              Add
-              </Button>
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',                  
+                    //bgcolor: 'red',
+                }}            
+            >
+                  <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'row',                  
+                          //bgcolor: 'red',
+                      }}
+                  >
 
-              <CancelButton onCBClick={handleCancel} />  
+                      <Button
+                          type="submit"
+                          variant="contained"
+                          onClick={ () => {handleSave('save');} }                    
+                      >
+                        Save
+                      </Button>
+                      
+                      <Box sx={{ mx:0.5}}></Box>  
+                      
+                      <CancelButton onCBClick={handleCancel} />  
 
-              <Switch sx={{ mt:3}}
-                  checked={checked}
-                  onChange={handleToggle}
-                  inputProps={{ 'aria-label': 'controlled' }}
-              />
+                      <Switch sx={{ mt:0}}
+                          checked={checked}
+                          onChange={handleToggle}
+                          inputProps={{ 'aria-label': 'controlled' }}
+                      />
 
-          </Box>
-          <Box
-              sx={{
-                  display: 'inline-flex',
-                  float: 'right',
-              }}
-          >
-              <Fab onClick={()=>preHandleScreen('number')} color="primary" aria-label="add" sx={{ mt:2, mr:2}}>
-                  <AddIcon />
-              </Fab>
-          </Box>
+                  </Box>
+                  <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'row-reverse',
+                          width: '100%'
 
-          <Box sx={{ mx: 0, my: 1 }}>
+                        }}
+                      >
+                        <Fab size="small" onClick={()=>preHandleScreen('number')} color="primary" aria-label="add" sx={{ mt:0, mr:0}}>
+                          <AddIcon />
+                        </Fab>
+
+                  </Box>
+
+            </Box>     
+
+
+            <Box sx={{ mx: 0, my: 1 }}>
                   {formValues?.numbers?.length
                       ? (
                           <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
@@ -394,29 +407,29 @@ const ContactAdd = (props) => {
                           </List>                        
                       ) : <Alert severity="error">No numbers found</Alert> 
                   }
-          </Box> 
+            </Box> 
 
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">
-              {"Delete contact"}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Want to delete this number?
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose}>No</Button>
-              <Button onClick={doDelete} autoFocus>
-                Yes
-              </Button>
-            </DialogActions>
-          </Dialog>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Delete contact"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Want to delete this number?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>No</Button>
+                <Button onClick={doDelete} autoFocus>
+                  Yes
+                </Button>
+              </DialogActions>
+            </Dialog>
 
 
       </>
