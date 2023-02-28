@@ -22,10 +22,10 @@ const Favorite = () => {
             <AppBar position="fixed" color="default">
                 <NavTabs val={2} />
             </AppBar>
-
-            <Box sx={{ mt: 2, mb: 4 }}>
-                <Alert severity="success">Check favorite page out!</Alert>            
-            </Box>
+            <Box sx={{ pt:7, px: 0, my: 0 }} ></Box>
+            <Box sx={{ mx: 0, my: 1 }}>
+                <Alert severity="info">Check favorite page out!</Alert>              
+            </Box>            
          </Container>
         </ThemeProvider>        
         </>

@@ -54,7 +54,7 @@ function Gateway(props) {
             {/* /:id and  key= added just to test*/}
             <Route path="contact/:id" key={new Date().getTime()}  element={<Contact />} />
           </Route>
-          <Route element={<RequireAuth allowedRoles={[ROLES.Editor]} />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
             <Route path="favorite" element={<Favorite />} />
           </Route>
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>

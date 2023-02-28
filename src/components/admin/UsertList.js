@@ -44,12 +44,11 @@ const UsertList = (props) => {
     const [adm, setAdm] = React.useState(false);
 
     const [updateToggle, setUpdateToggle] = useState(false);
-    const [enableUpate, setEnableUpate] = useState(false);
-    const [savedToggle, setSavedToggle] = useState(false);
-    const [enableSavedToggle, setEnableSavedToggle] = useState(false);
+    const [enableUpdate, setEnableUpdate] = useState(false);
+    const [saveDoneToggle, setSaveDoneToggle] = useState(false);
   
     const handleChange = (event) => {
-      setEnableUpate(true)  
+      setEnableUpdate(true)  
       const { name, checked } = event.target;
       name == "user" && setUser(checked);
       name == "editor" && setEditor(checked);
@@ -95,7 +94,7 @@ const UsertList = (props) => {
             controller.abort();
         }
 
-    }, [savedToggle])
+    }, [saveDoneToggle])
 
 
     useEffect(() => {
@@ -111,6 +110,7 @@ const UsertList = (props) => {
                 isMounted && console.log(response.data);
 
                 handleShowSnackBar(SUCCESS);
+                resetUserList();
                 
             } catch (err) {
                 console.error(err);
@@ -123,7 +123,7 @@ const UsertList = (props) => {
             }
         }
 
-        enableUpate && saveUser();
+        enableUpdate && saveUser();
 
         return () => {
             isMounted = false;
@@ -132,6 +132,10 @@ const UsertList = (props) => {
         }
     }, [updateToggle])
 
+    const resetUserList = () =>{
+        setAdmin({users: null})
+        setSaveDoneToggle(prev => !prev)
+    }
 
     const preHandleScreen = (action, json, i) => {
         
@@ -143,7 +147,8 @@ const UsertList = (props) => {
         setUser(json?.roles?.User?true:false);
         setEditor(json?.roles?.Editor?true:false);
         setAdm(json?.roles?.Admin?true:false);
-
+        
+        setEnableUpdate(false)
         handleOpen();
     }
 
