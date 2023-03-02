@@ -115,9 +115,9 @@ const Contact = () => {
         switch(toScreen) {
 
             case "list": 
-                //const bgcolor = 'primary.main'
+                const bgcolor = 'primary.main'
                 //const bgcolor = 'red'
-                const bgcolor = 'green'
+                //const bgcolor = 'green'
                 return  <>
                         <Box
                             sx={{
