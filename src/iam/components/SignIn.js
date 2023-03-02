@@ -79,6 +79,11 @@ function SignIn() {
     submit();
   };
 
+  const handleRegister = (e) => {
+    navigate('/register');
+    // navigate('/');
+  };
+
   const submit = async (e) => {
     if(!isSubmit) return;
     console.log(formValues);
@@ -275,12 +280,16 @@ function SignIn() {
                       Forgot password?
                       </Link>
                   </Grid>
-                  <Link href="/register" variant="body2">
-                    <Grid item sx={{ mr: 2}}>
-                      {"Sign Up"}
-                    </Grid>  
-                  </Link>
+                  
+                  <Grid item sx={{ mr: 2, cursor: 'pointer'}}  >
+                   <Box onClick={() => navigate("/register")}>
+                    <Link variant="body2">
+                      Sign Up
+                    </Link> 
+                    </Box> 
+                  </Grid>
                 </Grid>
+
             </Box>
         
         </Box>
