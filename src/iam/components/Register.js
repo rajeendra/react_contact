@@ -1,5 +1,6 @@
 
 import { useRef, useState, useEffect } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 //import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
@@ -26,6 +27,8 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = '/register';
 
 const Register = () => {
+    const navigate = useNavigate();
+
     const userRef = useRef();
     const errRef = useRef();
 
@@ -303,12 +306,16 @@ const Register = () => {
                     <Grid container justifyContent="center" sx={{ mb: 3}}>
                         <Grid item xs={6} sx={{ mr: 0,  pr: 0  }} justifyContent="right">
                             Already registered?   
-                        </Grid>                            
-                        <Link href="/login" variant="body2" xs={6} sx={{ ml: 0, pl: 0 }} >
-                        <Grid item justifyContent="left" sx={{ ml: 0, pl: 0 }}>
-                            Sign In    
-                        </Grid>
-                        </Link>
+                        </Grid> 
+
+                        <Grid item sx={{ mr: 2, cursor: 'pointer'}}  >
+                            <Box onClick={() => navigate("/login")}>
+                            <Link variant="body2">
+                                Sign In
+                            </Link> 
+                            </Box> 
+                        </Grid>                        
+
                     </Grid>                          
                 </Box>
             </Container>

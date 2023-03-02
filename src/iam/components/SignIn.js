@@ -79,11 +79,6 @@ function SignIn() {
     submit();
   };
 
-  const handleRegister = (e) => {
-    navigate('/register');
-    // navigate('/');
-  };
-
   const submit = async (e) => {
     if(!isSubmit) return;
     console.log(formValues);
