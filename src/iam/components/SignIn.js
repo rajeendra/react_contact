@@ -162,18 +162,19 @@ function SignIn() {
     return errors;
   };
 
-  function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://mui.com/">
-          Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
+  // function Copyright(props) {
+  //   console.log(props)
+  //   return (
+  //     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+  //       {' © Copyright   by '}
+  //       <Link color="inherit" href="https://mui.com/">
+  //         rajeendra
+  //       </Link>{'.  | '}
+  //       {new Date().getFullYear()}
+  //       {'.'}
+  //     </Typography>
+  //   );
+  // }
   
   const theme = createTheme();
   
@@ -288,8 +289,8 @@ function SignIn() {
             </Box>
         
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
+    {/* <Copyright sx={{ mt:2, pt: 7, pb: 1, bgcolor: '#212121' , color: '#757575' }} /> */}
     </ThemeProvider>
   )
 

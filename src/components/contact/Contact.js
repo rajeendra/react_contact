@@ -293,7 +293,7 @@ const Contact = () => {
     return (
         <>
         <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" sx={{ minHeight: '100vh'}}>
             <ExtSnackbar ref={childRef} />
             <CssBaseline />
             <AppBar position="fixed" color="default">

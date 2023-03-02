@@ -15,7 +15,7 @@ const Dashboard = () => {
     return (
         <>
         <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs"  sx={{ minHeight: '100vh'}}>
             <CssBaseline />
             <AppBar position="fixed" color="default">
                 <NavTabs val={0} />
