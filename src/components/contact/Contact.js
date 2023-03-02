@@ -115,6 +115,9 @@ const Contact = () => {
         switch(toScreen) {
 
             case "list": 
+                //const bgcolor = 'primary.main'
+                //const bgcolor = 'red'
+                const bgcolor = 'green'
                 return  <>
                         <Box
                             sx={{
@@ -124,17 +127,17 @@ const Contact = () => {
                                 display: 'inline-flex',
                                 justifyContent: 'flex-start',
                                 //bgcolor: 'primary.light',
-                                bgcolor: 'primary.main',
+                                bgcolor: bgcolor,
                                 //float: 'left'
                             }}
                         >
-                                <Box sx={ { bgcolor: 'primary.main', pl:2, pr:1, pt:0.5, mr:1, color: 'white'} }>
-                                    <Typography sx={ { px:1, my: 0.5, py:0, borderRadius: 1, bgcolor: 'primary.main'}} variant="h6" color="white">
+                                <Box sx={ { bgcolor: bgcolor, pl:2, pr:1, pt:0.5, mr:1, color: 'white'} }>
+                                    <Typography sx={ { px:1, my: 0.5, py:0, borderRadius: 1, bgcolor: bgcolor}} variant="h6" color="white">
                                         Contacts
                                     </Typography>                                
                                 </Box>
 
-                                <Box sx={ { bgcolor: 'primary.main', display: 'flex', float: 'right', px:1, py:0, mx:0, my:0, width: '100%'} }>
+                                <Box sx={ { bgcolor: bgcolor, display: 'flex', float: 'right', px:1, py:0, mx:0, my:0, width: '100%'} }>
                                     
                                     <TextField sx={ { my: 0.5, py:0, bgcolor: 'white' }} size="small"
                                         //error={!formErrors.fname ? false : true}
@@ -175,7 +178,7 @@ const Contact = () => {
 
                                 <Box
                                     sx={{
-                                        bgcolor: 'primary.main',
+                                        bgcolor: bgcolor,
                                         py: 0,
                                         my: 0,
                                         px:.5,
