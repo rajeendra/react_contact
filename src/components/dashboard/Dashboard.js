@@ -8,6 +8,8 @@ import NavTabs from '../layout/NavTabs';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 
+import Footer from '../layout/Footer';
+
 const Dashboard = () => {
 
     const theme = createTheme();
@@ -26,6 +28,7 @@ const Dashboard = () => {
             </Box>
 
         </Container>
+        <Footer />
         </ThemeProvider>        
         </>
       );

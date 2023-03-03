@@ -21,6 +21,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../../api/axios';
+import Footer from '../../components/layout/Footer';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -319,6 +320,7 @@ const Register = () => {
                     </Grid>                          
                 </Box>
             </Container>
+            <Footer />
             </ThemeProvider>
         )}
         </>

@@ -21,6 +21,7 @@ import ContactAdd from "./ContactAdd";
 import ContactEdit from "./ContactEdit";
 import ContactNumber from "./ContactNumber";
 import ExtSnackbar, {ERROR,INFO,SUCCESS} from "../custom/ExtSnackbar";
+import Footer from "../layout/Footer";
 
 import useAuth from "../../iam/hooks/useAuth";
 import useContactsSearch from "../hooks/useContactsSearch";
@@ -302,6 +303,7 @@ const Contact = () => {
             </AppBar>
             { screenNavigate() }
         </Container>
+        <Footer />
         </ThemeProvider>        
         </>
     );

@@ -17,6 +17,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 
+import Footer from '../../components/layout/Footer';
+
 import useAuth from '../hooks/useAuth';
 import useLocalStorage from '../hooks/useLocalStorage';
 import useInput from '../hooks/useInput';
@@ -180,7 +182,7 @@ function SignIn() {
   
    return(
     <ThemeProvider theme={theme}>
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" sx={{ minHeight: '100vh'}}>
         <CssBaseline />
         <Box
         sx={{
@@ -290,6 +292,7 @@ function SignIn() {
         
         </Box>
     </Container>
+    <Footer />
     {/* <Copyright sx={{ mt:2, pt: 7, pb: 1, bgcolor: '#212121' , color: '#757575' }} /> */}
     </ThemeProvider>
   )

@@ -10,6 +10,8 @@ import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 
+import Footer from '../layout/Footer';
+
 const Favorite = () => {
 
     const theme = createTheme();
@@ -27,6 +29,7 @@ const Favorite = () => {
                 <Alert severity="info">Check favorite page out!</Alert>              
             </Box>            
          </Container>
+         <Footer />
         </ThemeProvider>        
         </>
       );

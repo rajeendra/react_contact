@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
 
+import Footer from '../layout/Footer';
 import UsertList from './UsertList';
 import UserEdit from './UserEdit';
 
@@ -100,6 +101,7 @@ const Admin = (props) => {
             </AppBar>
             { screenNavigate() }
         </Container>
+        <Footer />
         </ThemeProvider>        
         </>   
       );
