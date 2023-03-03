@@ -114,10 +114,10 @@ const Register = () => {
 
     return (
         <>
-        {success ? (
-                <ThemeProvider theme={theme}>
-                <Container component="main" maxWidth="xs">
-                    <CssBaseline />
+        <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs" sx={{ minHeight: '100vh'}}>
+        <CssBaseline />   
+            {success ? (
                     <Box
                         sx={{
                             marginTop: 8,
@@ -140,189 +140,187 @@ const Register = () => {
                             </Link>
                         </Grid>                                     
                     </Box>
-                </Container>
-                </ThemeProvider>
-        ) : (
-            <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <AppRegistrationIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Register
-                    </Typography>
-                </Box>
-
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                    { errMsg && <Alert ref={errRef} severity="error">{errMsg}</Alert>}
-
+            ) : (
+                <>
                     <Box
                         sx={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        //p: 1,
-                        ml: 1,
-                        mb: 1, 
-                        bgcolor: 'background.paper',
-                        color: validName ? "green" : "red",
-                        borderRadius: 1,
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
                         }}
                     >
-                        { validName && <FontAwesomeIcon icon={faCheck} /> }
-                        { ( userFocus && !validName )  && <FontAwesomeIcon icon={faTimes}  />}
+                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                            <AppRegistrationIcon />
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                            Register
+                        </Typography>
                     </Box>
 
-                    <TextField sx={{mt: 0}}
-                        error={!formErrors.username ? false : true}
-                        helperText={formErrors.username}                
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="username"
-                        label="Username"
-                        name="username"
-                        autoComplete="off"
-                        //autoFocus
-                        value={user}
-                        onChange={(e) => setUser(e.target.value)}
-                        ref={userRef}
-                        onFocus={() => setUserFocus(true)}
-                        onBlur={() => setUserFocus(false)}
-                    />
-                    
-                    {
-                    userFocus && user && !validName &&    
-                    
-                    <Alert severity="info">
-                        <AlertTitle>Rules <strong> - check it out!</strong></AlertTitle>
-                        4 to 24 characters.<br/>
-                        Must begin with a letter, numbers, underscores, hyphens allowed.
-                    </Alert>
-                    }                        
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                        { errMsg && <Alert ref={errRef} severity="error">{errMsg}</Alert>}
 
-                    <Box
-                        sx={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        //p: 1,
-                        ml: 1,
-                        mb: 1, 
-                        bgcolor: 'background.paper',
-                        color: validPwd ? "green" : "red",
-                        borderRadius: 1,
-                        }}
-                    >
-                        { validPwd && <FontAwesomeIcon icon={faCheck} /> }
-                        { ( pwdFocus && !validPwd )  && <FontAwesomeIcon icon={faTimes}  />}
-                    </Box>
-
-                    <TextField sx={{mt: 0}}
-                        error={!formErrors.password ? false : true}
-                        helperText={formErrors.password}                
-                        margin="normal"
-                        required
-                        fullWidth
-                        type="password"
-                        id="password"
-                        label="Password"
-                        name="password"
-                        autoComplete="off"
-                        onChange={(e) => setPwd(e.target.value)}
-                        value={pwd}
-                        onFocus={() => setPwdFocus(true)}
-                        onBlur={() => setPwdFocus(false)}
-                    />
-                    
-                    {
-                    pwdFocus && !validPwd  &&    
-                    
-                    <Alert severity="info">
-                        <AlertTitle>Rules <strong> - check it out!</strong></AlertTitle>
-                        8 to 24 characters.<br />
-                        Must include uppercase and lowercase letters, a number and a special character.<br />
-                        Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
-                    </Alert>
-                    }                        
-
-                    <Box
-                        sx={{
+                        <Box
+                            sx={{
                             display: 'flex',
                             flexDirection: 'row',
                             //p: 1,
                             ml: 1,
                             mb: 1, 
                             bgcolor: 'background.paper',
-                            color: validMatch ? "green" : "red",
+                            color: validName ? "green" : "red",
                             borderRadius: 1,
-                        }}
-                    >
-                        { pwd!='' && validMatch && <FontAwesomeIcon icon={faCheck} /> }
-                        { ( matchFocus && !validMatch )  && <FontAwesomeIcon icon={faTimes}  />}
-                    </Box>
+                            }}
+                        >
+                            { validName && <FontAwesomeIcon icon={faCheck} /> }
+                            { ( userFocus && !validName )  && <FontAwesomeIcon icon={faTimes}  />}
+                        </Box>
 
-                    <TextField sx={{mt: 0}}
-                        error={!formErrors.matchPassword ? false : true}
-                        helperText={formErrors.matchPassword}                
-                        margin="normal"
-                        required
-                        fullWidth
-                        type="password"
-                        id="matchPassword"
-                        label="Confirm password"
-                        name="matchPassword"
-                        autoComplete="off"
-                        onChange={(e) => setMatchPwd(e.target.value)}
-                        value={matchPwd}
-                        onFocus={() => setMatchFocus(true)}
-                        onBlur={() => setMatchFocus(false)}
-                    />
-                    
-                    {
-                        matchFocus && !validMatch  &&    
+                        <TextField sx={{mt: 0}}
+                            error={!formErrors.username ? false : true}
+                            helperText={formErrors.username}                
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="username"
+                            label="Username"
+                            name="username"
+                            autoComplete="off"
+                            //autoFocus
+                            value={user}
+                            onChange={(e) => setUser(e.target.value)}
+                            ref={userRef}
+                            onFocus={() => setUserFocus(true)}
+                            onBlur={() => setUserFocus(false)}
+                        />
+                        
+                        {
+                        userFocus && user && !validName &&    
                         
                         <Alert severity="info">
                             <AlertTitle>Rules <strong> - check it out!</strong></AlertTitle>
-                            Must match the first password input field.
+                            4 to 24 characters.<br/>
+                            Must begin with a letter, numbers, underscores, hyphens allowed.
                         </Alert>
-                    }                        
+                        }                        
 
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                        disabled={!validName || !validPwd || !validMatch ? true : false}
-                    >
-                        Sign Up
-                    </Button>
-                    <Grid container justifyContent="center" sx={{ mb: 3}}>
-                        <Grid item xs={6} sx={{ mr: 0,  pr: 0  }} justifyContent="right">
-                            Already registered?   
-                        </Grid> 
+                        <Box
+                            sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            //p: 1,
+                            ml: 1,
+                            mb: 1, 
+                            bgcolor: 'background.paper',
+                            color: validPwd ? "green" : "red",
+                            borderRadius: 1,
+                            }}
+                        >
+                            { validPwd && <FontAwesomeIcon icon={faCheck} /> }
+                            { ( pwdFocus && !validPwd )  && <FontAwesomeIcon icon={faTimes}  />}
+                        </Box>
 
-                        <Grid item sx={{ mr: 2, cursor: 'pointer'}}  >
-                            <Box onClick={() => navigate("/login")}>
-                            <Link variant="body2">
-                                Sign In
-                            </Link> 
-                            </Box> 
-                        </Grid>                        
+                        <TextField sx={{mt: 0}}
+                            error={!formErrors.password ? false : true}
+                            helperText={formErrors.password}                
+                            margin="normal"
+                            required
+                            fullWidth
+                            type="password"
+                            id="password"
+                            label="Password"
+                            name="password"
+                            autoComplete="off"
+                            onChange={(e) => setPwd(e.target.value)}
+                            value={pwd}
+                            onFocus={() => setPwdFocus(true)}
+                            onBlur={() => setPwdFocus(false)}
+                        />
+                        
+                        {
+                        pwdFocus && !validPwd  &&    
+                        
+                        <Alert severity="info">
+                            <AlertTitle>Rules <strong> - check it out!</strong></AlertTitle>
+                            8 to 24 characters.<br />
+                            Must include uppercase and lowercase letters, a number and a special character.<br />
+                            Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                        </Alert>
+                        }                        
 
-                    </Grid>                          
-                </Box>
-            </Container>
-            <Footer />
-            </ThemeProvider>
-        )}
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                //p: 1,
+                                ml: 1,
+                                mb: 1, 
+                                bgcolor: 'background.paper',
+                                color: validMatch ? "green" : "red",
+                                borderRadius: 1,
+                            }}
+                        >
+                            { pwd!='' && validMatch && <FontAwesomeIcon icon={faCheck} /> }
+                            { ( matchFocus && !validMatch )  && <FontAwesomeIcon icon={faTimes}  />}
+                        </Box>
+
+                        <TextField sx={{mt: 0}}
+                            error={!formErrors.matchPassword ? false : true}
+                            helperText={formErrors.matchPassword}                
+                            margin="normal"
+                            required
+                            fullWidth
+                            type="password"
+                            id="matchPassword"
+                            label="Confirm password"
+                            name="matchPassword"
+                            autoComplete="off"
+                            onChange={(e) => setMatchPwd(e.target.value)}
+                            value={matchPwd}
+                            onFocus={() => setMatchFocus(true)}
+                            onBlur={() => setMatchFocus(false)}
+                        />
+                        
+                        {
+                            matchFocus && !validMatch  &&    
+                            
+                            <Alert severity="info">
+                                <AlertTitle>Rules <strong> - check it out!</strong></AlertTitle>
+                                Must match the first password input field.
+                            </Alert>
+                        }                        
+
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                            disabled={!validName || !validPwd || !validMatch ? true : false}
+                        >
+                            Sign Up
+                        </Button>
+                        <Grid container justifyContent="center" sx={{ mb: 3}}>
+                            <Grid item xs={6} sx={{ mr: 0,  pr: 0  }} justifyContent="right">
+                                Already registered?   
+                            </Grid> 
+
+                            <Grid item sx={{ mr: 2, cursor: 'pointer'}}  >
+                                <Box onClick={() => navigate("/login")}>
+                                <Link variant="body2">
+                                    Sign In
+                                </Link> 
+                                </Box> 
+                            </Grid>                        
+
+                        </Grid>                          
+                    </Box>
+                </>
+            )}
+        </Container>
+        <Footer />
+        </ThemeProvider>
+
         </>
     );
 
