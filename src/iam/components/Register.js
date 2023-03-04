@@ -322,8 +322,8 @@ const Register = () => {
                     </>
                 )}
             </Box> 
-            <Footer />
         </Container>
+        <Footer />
         </ThemeProvider>
 
         </>

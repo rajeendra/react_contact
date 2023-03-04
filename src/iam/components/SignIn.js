@@ -279,8 +279,8 @@ function SignIn() {
             </Box>
         
         </Box>
-        <Footer />
     </Container>
+    <Footer />
     </ThemeProvider>
     </>
   )

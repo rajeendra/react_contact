@@ -33,8 +33,8 @@ const Favorite = () => {
                 </Box>
 
             </Box>            
-            <Footer />
          </Container>
+         <Footer />
         </ThemeProvider>        
         </>
       );

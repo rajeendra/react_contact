@@ -305,8 +305,8 @@ const Contact = () => {
                 </AppBar>
                 { screenNavigate() }
             </Box>
-            <Footer />
         </Container>
+        <Footer />
         </ThemeProvider>        
         </>
     );

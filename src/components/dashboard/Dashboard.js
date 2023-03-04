@@ -29,8 +29,8 @@ const Dashboard = () => {
                     <Alert severity="info">Check home page out!</Alert>              
                 </Box>
             </Box>
-            <Footer />
         </Container>
+        <Footer />
         </ThemeProvider>        
         </>
       );
