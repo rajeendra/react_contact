@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import './index.css';
+import './index.css';
 import App from './App';
 import { AuthProvider } from './iam/context/AuthProvider';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';

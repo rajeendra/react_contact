@@ -294,16 +294,19 @@ const Contact = () => {
     return (
         <>
         <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs" sx={{ minHeight: '100vh'}}>
-            <ExtSnackbar ref={childRef} />
+        <Container component="main" maxWidth="xs" >
             <CssBaseline />
-            <AppBar position="fixed" color="default">
-                <NavTabs val={1} />
-                {screenTitle()}
-            </AppBar>
-            { screenNavigate() }
+            <Box minHeight='100vh' >
+                {/* All page content comes here */}
+                <ExtSnackbar ref={childRef} />
+                <AppBar position="fixed" color="default">
+                    <NavTabs val={1} />
+                    {screenTitle()}
+                </AppBar>
+                { screenNavigate() }
+            </Box>
+            <Footer />
         </Container>
-        <Footer />
         </ThemeProvider>        
         </>
     );

@@ -92,16 +92,18 @@ const Admin = (props) => {
     return (
         <>
         <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs" sx={{ minHeight: '100vh'}}>
-            {/* <ExtSnackbar ref={childRef} /> */}
+        <Container component="main" maxWidth="xs" >
             <CssBaseline />
-            <AppBar position="fixed" color="default">
-                <NavTabs val={3} />
-                {screenTitle()}
-            </AppBar>
-            { screenNavigate() }
+            <Box minHeight='100vh' >
+                {/* All page content comes here */}
+                <AppBar position="fixed" color="default">
+                    <NavTabs val={3} />
+                    {screenTitle()}
+                </AppBar>
+                { screenNavigate() }
+            </Box>
+            <Footer />
         </Container>
-        <Footer />
         </ThemeProvider>        
         </>   
       );

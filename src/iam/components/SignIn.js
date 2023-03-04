@@ -164,25 +164,12 @@ function SignIn() {
     return errors;
   };
 
-  // function Copyright(props) {
-  //   console.log(props)
-  //   return (
-  //     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-  //       {' © Copyright   by '}
-  //       <Link color="inherit" href="https://mui.com/">
-  //         rajeendra
-  //       </Link>{'.  | '}
-  //       {new Date().getFullYear()}
-  //       {'.'}
-  //     </Typography>
-  //   );
-  // }
-  
   const theme = createTheme();
   
    return(
+    <>
     <ThemeProvider theme={theme}>
-    <Container component="main" maxWidth="xs" sx={{ minHeight: '100vh'}}>
+    <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
         sx={{
@@ -190,6 +177,7 @@ function SignIn() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            minHeight: 'calc(100vh - 0px)',
         }}
         >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -291,10 +279,10 @@ function SignIn() {
             </Box>
         
         </Box>
+        <Footer />
     </Container>
-    <Footer />
-    {/* <Copyright sx={{ mt:2, pt: 7, pb: 1, bgcolor: '#212121' , color: '#757575' }} /> */}
     </ThemeProvider>
+    </>
   )
 
 }
