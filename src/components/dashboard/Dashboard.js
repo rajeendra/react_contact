@@ -28,6 +28,15 @@ const Dashboard = () => {
                 <Box sx={{ mx: 1, my: 1, justifyContent: 'center' }}>
                     <Alert severity="info">Check home page out!</Alert>              
                 </Box>
+
+                {/* <Alert variant="standard" color="info"> */}
+                {/* <Alert variant="outlined" color="info"> */}
+                {/* <Alert variant="filled" color="info"> */}
+                <Alert variant="outlined" color="error">
+                We've built the foundational components for your design system, 
+                enabling you to launch that cool product you've been thinking about even faster. 
+                We got your back!
+                </Alert>
             </Box>
         </Container>
         <Footer />

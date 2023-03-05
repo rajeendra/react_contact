@@ -390,7 +390,7 @@ const ContactEdit = (props) => {
                                     <ListItem>
                                         <ListItemAvatar>
                                         <Avatar>
-                                            <PhoneIphoneIcon />
+                                            <PhoneIphoneIcon onClick={ ()=>{window.open('tel:'+ number.number)} } > </PhoneIphoneIcon>
                                         </Avatar>
                                         </ListItemAvatar>
                                         <ListItemText key={i} primary={number.number} secondary={number.number} />
