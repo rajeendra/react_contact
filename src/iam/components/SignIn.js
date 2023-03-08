@@ -27,7 +27,8 @@ import useToggle from '../hooks/useToggle';
 import axios from '../../api/axios';
 const LOGIN_URL = '/auth';
 
-function SignIn() {
+function SignIn(props) {
+    const { setHome } = props
 
     const { setAuth } = useAuth(); // auth, setAuth passing to AuthContext @ AuthProvider
     const navigate = useNavigate();
@@ -103,7 +104,7 @@ function SignIn() {
         // set Auth info @ AuthContext  
         //setAuth({ user, pwd, roles, accessToken });
         setAuth({ user : formValues.username , pwd : formValues.password , roles, accessToken });
-        
+        setHome( { signinOnce: true } )
         // if set this, value of key STORE_KEY_USER also reset
         //resetUser(''); // const reset = () => setValue(initValue);
         

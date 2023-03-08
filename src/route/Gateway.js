@@ -25,6 +25,13 @@ function Gateway(props) {
 
   const {biz, setBiz} = props;
 
+
+  // Context - app home
+  const home = biz.home
+  const setHome = (obj) =>{
+    setBiz( {...biz, home: {...home, ...obj} })
+  }
+
   // Context - admn model
   const admin = biz.admin
   const setAdmin = (obj) =>{
@@ -41,12 +48,13 @@ function Gateway(props) {
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* public routes */}
-        <Route path="login" element={<SignIn />} />
+        <Route path="login" element={<SignIn setHome={setHome} />} />
         <Route path="register" element={<Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
 
         {/* we want to protect these routes */}
-        <Route element={<PersistLogin />}>
+        <Route element={<PersistLogin home={home} />}>
+        {/* <Route > */}
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
             <Route path="/" element={<Dashboard />} />
           </Route>

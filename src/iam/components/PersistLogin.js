@@ -4,7 +4,9 @@ import useRefreshToken from '../hooks/useRefreshToken';
 import useAuth from "../hooks/useAuth";
 import useLocalStorage from "../hooks/useLocalStorage";
 
-const PersistLogin = () => {
+const PersistLogin = (props) => {
+    const { home,setHome } = props
+
     const [isLoading, setIsLoading] = useState(true);
     const refresh = useRefreshToken();
     //const { auth, persist } = useAuth();
@@ -31,7 +33,7 @@ const PersistLogin = () => {
         
         // persist added here AFTER tutorial video
         // Avoids unwanted call to verifyRefreshToken
-        !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false);
+        home?.signinOnce && !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false);
 
         return () => isMounted = false;
     }, [])
