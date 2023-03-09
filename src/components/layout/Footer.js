@@ -10,12 +10,14 @@ const Footer = () => {
           <Typography variant="body2" color="text.secondary" align="center" 
               sx={{ 
                     //mt: 'calc(auto - 500px)', width: '100vw', pt: 7, pb: 1, 
-                    mt: 'auto', width: '100vw', pt: 7, pb: 1, 
+                    //mt: 'auto', width: '100vw', pt: 7, pb: 1, 
+                    pt: 7, pb: 1, 
                     //mt: 'calc(100vh - 0px)', width: '100vw', pt: 7, pb: 1, 
                     //width: '100vw', pt: 7, pb: 1, 
                     ...props.sx 
                   }}
           >
+          {/* <Typography variant="body2" color="text.secondary" align="center" {...props} >  */}
             {' © Copyright   by '}
             <Link color="inherit" href="https://mui.com/">
               rajeendra
@@ -28,6 +30,7 @@ const Footer = () => {
 
 
     return (
+        // <h1>test</h1>
         <Copyright sx={{ bgcolor: '#212121' , color: '#757575' }} />
         // <Copyright sx={{ bgcolor: 'primary.dark' , color: '#757575' }} />
         // <Copyright sx={{ bgcolor: '#004d40' , color: '#757575' }} />

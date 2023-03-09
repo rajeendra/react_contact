@@ -16,31 +16,37 @@ const Dashboard = () => {
 
     return (
         <>
-        <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs"  sx={{ minHeight: '100vh'}}>
-            <CssBaseline />
-            <Box minHeight='100vh' >
+        {/* <ThemeProvider theme={theme}> */}
+        {/* <Container component="main" maxWidth="xs"  sx={{ minHeight: '100vh'}}> */}
+        <div class="App">
+            {/* <CssBaseline /> */}
+            {/* <Box minHeight='100vh' > */}
                 {/* All page content comes here */}
                 <AppBar position="fixed" color="default">
                     <NavTabs val={0} />
                 </AppBar>
-                <Box sx={{ pt:7, px: 0, my: 0 }} ></Box>
-                <Box sx={{ mx: 1, my: 1, justifyContent: 'center' }}>
-                    <Alert severity="info">Check home page out!</Alert>              
-                </Box>
+                <div class="content">   
+                    <div class="section-up">
+                        <Alert severity="info">Check home page out!</Alert>              
+                        <Alert variant="outlined" color="error">
+                            We've built the foundational components for your design system, 
+                            enabling you to launch that cool product you've been thinking about even faster. 
+                            We got your back!
+                        </Alert>                    
+                    </div>                
 
-                {/* <Alert variant="standard" color="info"> */}
-                {/* <Alert variant="outlined" color="info"> */}
-                {/* <Alert variant="filled" color="info"> */}
-                <Alert variant="outlined" color="error">
-                We've built the foundational components for your design system, 
-                enabling you to launch that cool product you've been thinking about even faster. 
-                We got your back!
-                </Alert>
-            </Box>
-        </Container>
-        <Footer />
-        </ThemeProvider>        
+                    <div class="section-down">
+                        {/* <div class="section-down-space"></div> */}
+                        {/* <Footer class="Footer" /> */}
+                        <Footer />
+                        {/* <Footer /> */}
+                    </div>
+
+
+
+                </div>
+        </div>
+        {/* </ThemeProvider> */}
         </>
       );
 }
