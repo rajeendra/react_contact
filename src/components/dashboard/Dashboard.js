@@ -16,11 +16,9 @@ const Dashboard = () => {
 
     return (
         <>
-        {/* <ThemeProvider theme={theme}> */}
-        {/* <Container component="main" maxWidth="xs"  sx={{ minHeight: '100vh'}}> */}
+        <ThemeProvider theme={theme}>
         <div class="App">
-            {/* <CssBaseline /> */}
-            {/* <Box minHeight='100vh' > */}
+            <CssBaseline />
                 {/* All page content comes here */}
                 <AppBar position="fixed" color="default">
                     <NavTabs val={0} />
@@ -36,17 +34,12 @@ const Dashboard = () => {
                     </div>                
 
                     <div class="section-down">
-                        {/* <div class="section-down-space"></div> */}
-                        {/* <Footer class="Footer" /> */}
+                        <Alert severity="info">Check home page down under out!</Alert>
                         <Footer />
-                        {/* <Footer /> */}
                     </div>
-
-
-
                 </div>
         </div>
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
         </>
       );
 }
