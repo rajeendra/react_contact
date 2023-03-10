@@ -17,28 +17,28 @@ const Dashboard = () => {
     return (
         <>
         <ThemeProvider theme={theme}>
-        <div class="App">
+        <Box class="App">
             <CssBaseline />
                 {/* All page content comes here */}
                 <AppBar position="fixed" color="default">
                     <NavTabs val={0} />
                 </AppBar>
-                <div class="content">   
-                    <div class="section-up">
+                <Box class="content">   
+                    <Box class="section-up">
                         <Alert severity="info">Check home page out!</Alert>              
                         <Alert variant="outlined" color="error">
                             We've built the foundational components for your design system, 
                             enabling you to launch that cool product you've been thinking about even faster. 
                             We got your back!
                         </Alert>                    
-                    </div>                
+                    </Box>                
 
-                    <div class="section-down">
+                    <Box class="section-down">
                         <Alert severity="info">Check home page down under out!</Alert>
                         <Footer />
-                    </div>
-                </div>
-        </div>
+                    </Box>
+                </Box>
+        </Box>
         </ThemeProvider>
         </>
       );

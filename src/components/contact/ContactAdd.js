@@ -257,7 +257,7 @@ const ContactAdd = (props) => {
 
   return (
       <>
-          <Box sx={{ pt:12, px: 0, my: 0 }} ></Box>
+          <Box sx={{ pt:6, px: 0, my: 0 }} ></Box>
 
           {/* <ExtSnackbar ref={childRef} /> */}
 
@@ -312,6 +312,7 @@ const ContactAdd = (props) => {
 
           <Box
                 sx={{
+                  px:1,
                   display: 'flex',
                   flexDirection: 'row',                  
                     //bgcolor: 'red',

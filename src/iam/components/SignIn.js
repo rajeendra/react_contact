@@ -167,126 +167,253 @@ function SignIn(props) {
 
   const theme = createTheme();
   
-   return(
+  //  return(
+  //   <>
+  //   <ThemeProvider theme={theme}>
+  //   <Container component="main" maxWidth="xs">
+  //       <CssBaseline />
+  //       <Box
+  //       sx={{
+  //           marginTop: 8,
+  //           display: 'flex',
+  //           flexDirection: 'column',
+  //           alignItems: 'center',
+  //           minHeight: 'calc(100vh - 0px)',
+  //       }}
+  //       >
+  //           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+  //               <LockOutlinedIcon />
+  //           </Avatar>
+  //           <Typography component="h1" variant="h5">
+  //               Sign in
+  //           </Typography>
+
+  //           {/*  Form Box  */}
+  //           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+  //               { errMsg && <Alert ref={errRef} severity="error">{errMsg}</Alert>}
+      
+  //               <TextField
+  //                   error={!formErrors.username ? false : true}
+  //                   helperText={formErrors.username}                
+  //                   margin="normal"
+  //                   required
+  //                   fullWidth
+  //                   id="username"
+  //                   label="Username"
+  //                   name="username"
+  //                   autoComplete="on"
+  //                   //autoFocus
+                    
+  //                   //value={formValues.username}
+  //                   //onChange={handleChange}
+  //                   onChange={{...userAttribs}.onChange}
+  //                   value={{...userAttribs}.value}
+                    
+  //                   ref={userRef}
+  //               />
+
+  //               <TextField
+  //                   error={!formErrors.email ? false : true}
+  //                   helperText={formErrors.email}
+  //                   margin="normal"
+  //                   required
+  //                   fullWidth
+  //                   id="email"
+  //                   label="Email Address"
+  //                   name="email"
+  //                   autoComplete="email"
+  //                   //autoFocus
+  //                   value={formValues.email}
+  //                   onChange={handleChange}
+  //               />
+  //               <TextField
+  //                   error={!formErrors.password ? false : true}
+  //                   helperText={formErrors.password}                     
+  //                   margin="normal"
+  //                   required
+  //                   fullWidth
+  //                   name="password"
+  //                   label="Password"
+  //                   type="password"
+  //                   id="password"
+  //                   autoComplete="current-password"
+  //                   value={formValues.password}
+  //                   onChange={handleChange}
+  //               />
+
+  //               <FormControlLabel
+  //                   control={
+  //                     <Checkbox value="remember" 
+  //                       color="primary" 
+  //                       id="persist"
+  //                       onChange={toggleCheck}
+  //                       checked={check}                        
+  //                     />
+  //                   }
+  //                   label="Remember me"
+  //               />
+  //               <Button
+  //                   type="submit"
+  //                   fullWidth
+  //                   variant="contained"
+  //                   sx={{ mt: 3, mb: 2 }}
+  //               >
+  //               Sign In
+  //               </Button>
+
+  //               <Grid container sx={{ ml: 1 }}>
+  //                 <Grid item xs>
+  //                     <Link href="#" variant="body2">
+  //                     Forgot password?
+  //                     </Link>
+  //                 </Grid>
+                  
+  //                 <Grid item sx={{ mr: 2, cursor: 'pointer'}}  >
+  //                  <Box onClick={() => navigate("/register")}>
+  //                   <Link variant="body2">
+  //                     Sign Up
+  //                   </Link> 
+  //                   </Box> 
+  //                 </Grid>
+  //               </Grid>
+
+  //           </Box>
+        
+  //       </Box>
+  //   </Container>
+  //   <Footer />
+  //   </ThemeProvider>
+  //   </>
+  // )
+
+  return (
     <>
     <ThemeProvider theme={theme}>
-    <Container component="main" maxWidth="xs">
+    <div class="App">
         <CssBaseline />
-        <Box
-        sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            minHeight: 'calc(100vh - 0px)',
-        }}
-        >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-                Sign in
-            </Typography>
-
-            {/*  Form Box  */}
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                { errMsg && <Alert ref={errRef} severity="error">{errMsg}</Alert>}
-      
-                <TextField
-                    error={!formErrors.username ? false : true}
-                    helperText={formErrors.username}                
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="username"
-                    label="Username"
-                    name="username"
-                    autoComplete="on"
-                    //autoFocus
-                    
-                    //value={formValues.username}
-                    //onChange={handleChange}
-                    onChange={{...userAttribs}.onChange}
-                    value={{...userAttribs}.value}
-                    
-                    ref={userRef}
-                />
-
-                <TextField
-                    error={!formErrors.email ? false : true}
-                    helperText={formErrors.email}
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    //autoFocus
-                    value={formValues.email}
-                    onChange={handleChange}
-                />
-                <TextField
-                    error={!formErrors.password ? false : true}
-                    helperText={formErrors.password}                     
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    value={formValues.password}
-                    onChange={handleChange}
-                />
-
-                <FormControlLabel
-                    control={
-                      <Checkbox value="remember" 
-                        color="primary" 
-                        id="persist"
-                        onChange={toggleCheck}
-                        checked={check}                        
-                      />
-                    }
-                    label="Remember me"
-                />
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
+            {/* All page content comes here */}
+            <div class="content">   
+                <div class="section-up">
+                <Box
+                sx={{
+                    // marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    // minHeight: 'calc(100vh - 0px)',
+                }}
                 >
-                Sign In
-                </Button>
+                  <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                      <LockOutlinedIcon />
+                  </Avatar>
+                  <Typography component="h1" variant="h5">
+                      Sign in
+                  </Typography>
 
-                <Grid container sx={{ ml: 1 }}>
-                  <Grid item xs>
-                      <Link href="#" variant="body2">
-                      Forgot password?
-                      </Link>
-                  </Grid>
-                  
-                  <Grid item sx={{ mr: 2, cursor: 'pointer'}}  >
-                   <Box onClick={() => navigate("/register")}>
-                    <Link variant="body2">
-                      Sign Up
-                    </Link> 
-                    </Box> 
-                  </Grid>
-                </Grid>
+                  {/*  Form Box  */}
+                  <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                      { errMsg && <Alert ref={errRef} severity="error">{errMsg}</Alert>}
+            
+                      <TextField
+                          error={!formErrors.username ? false : true}
+                          helperText={formErrors.username}                
+                          margin="normal"
+                          required
+                          fullWidth
+                          id="username"
+                          label="Username"
+                          name="username"
+                          autoComplete="on"
+                          //autoFocus
+                          
+                          //value={formValues.username}
+                          //onChange={handleChange}
+                          onChange={{...userAttribs}.onChange}
+                          value={{...userAttribs}.value}
+                          
+                          ref={userRef}
+                      />
 
-            </Box>
+                      <TextField
+                          error={!formErrors.email ? false : true}
+                          helperText={formErrors.email}
+                          margin="normal"
+                          required
+                          fullWidth
+                          id="email"
+                          label="Email Address"
+                          name="email"
+                          autoComplete="email"
+                          //autoFocus
+                          value={formValues.email}
+                          onChange={handleChange}
+                      />
+                      <TextField
+                          error={!formErrors.password ? false : true}
+                          helperText={formErrors.password}                     
+                          margin="normal"
+                          required
+                          fullWidth
+                          name="password"
+                          label="Password"
+                          type="password"
+                          id="password"
+                          autoComplete="current-password"
+                          value={formValues.password}
+                          onChange={handleChange}
+                      />
+
+                      <FormControlLabel
+                          control={
+                            <Checkbox value="remember" 
+                              color="primary" 
+                              id="persist"
+                              onChange={toggleCheck}
+                              checked={check}                        
+                            />
+                          }
+                          label="Remember me"
+                      />
+                      <Button
+                          type="submit"
+                          fullWidth
+                          variant="contained"
+                          sx={{ mt: 3, mb: 2 }}
+                      >
+                      Sign In
+                      </Button>
+
+                      <Grid container sx={{ ml: 1 }}>
+                        <Grid item xs>
+                            <Link href="#" variant="body2">
+                            Forgot password?
+                            </Link>
+                        </Grid>
+                        
+                        <Grid item sx={{ mr: 2, cursor: 'pointer'}}  >
+                        <Box onClick={() => navigate("/register")}>
+                          <Link variant="body2">
+                            Sign Up
+                          </Link> 
+                          </Box> 
+                        </Grid>
+                      </Grid>
+
+                  </Box>
         
-        </Box>
-    </Container>
-    <Footer />
+                </Box>            
+                 
+                </div>                
+
+                <div class="section-down">
+                    <Footer />
+                </div>
+            </div>
+    </div>
     </ThemeProvider>
     </>
-  )
-
-}
+  );
+}  
 
 export const STORE_KEY_USER = 'user-key'
 export const STORE_KEY_PERSIST = 'persist'

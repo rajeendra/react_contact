@@ -291,25 +291,51 @@ const Contact = () => {
 
     const childRef = useRef();
     
+    // return (
+    //     <>
+    //     <ThemeProvider theme={theme}>
+    //     <Container component="main" maxWidth="xs" >
+    //         <CssBaseline />
+    //         <Box minHeight='100vh' >
+    //             {/* All page content comes here */}
+    //             <ExtSnackbar ref={childRef} />
+    //             <AppBar position="fixed" color="default">
+    //                 <NavTabs val={1} />
+    //                 {screenTitle()}
+    //             </AppBar>
+    //             { screenNavigate() }
+    //         </Box>
+    //     </Container>
+    //     <Footer />
+    //     </ThemeProvider>        
+    //     </>
+    // );
+
     return (
         <>
         <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs" >
+        <Box class="App">
             <CssBaseline />
-            <Box minHeight='100vh' >
                 {/* All page content comes here */}
                 <ExtSnackbar ref={childRef} />
                 <AppBar position="fixed" color="default">
                     <NavTabs val={1} />
                     {screenTitle()}
                 </AppBar>
-                { screenNavigate() }
-            </Box>
-        </Container>
-        <Footer />
-        </ThemeProvider>        
+                <Box class="content">   
+                    <Box class="section-up">
+                        { screenNavigate() }                     
+                    </Box>                
+
+                    <Box class="section-down">
+                        <Footer />
+                    </Box>
+                </Box>
+        </Box>
+        </ThemeProvider>
         </>
-    );
+      );
+
 }
 
 export default Contact

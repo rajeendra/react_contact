@@ -231,7 +231,7 @@ const ContactList = (props) => {
     
     return (
         <>
-            <Box sx={{ pt:12, px: 0, my: 0 }} ></Box>
+            <Box sx={{ pt:6, px: 0, my: 0 }} ></Box>
             
             <ExtSnackbar ref={childRef} />
 

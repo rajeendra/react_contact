@@ -31,8 +31,8 @@ const Footer = () => {
 
     return (
         // <h1>test</h1>
-        <Copyright sx={{ bgcolor: '#212121' , color: '#757575' }} />
-        // <Copyright sx={{ bgcolor: 'primary.dark' , color: '#757575' }} />
+        // <Copyright sx={{ bgcolor: '#212121' , color: '#757575' }} />
+        <Copyright sx={{ bgcolor: 'primary.dark' , color: 'white' }} />
         // <Copyright sx={{ bgcolor: '#004d40' , color: '#757575' }} />
     )
    

@@ -12,8 +12,9 @@
     /* background-color: #174b23a2; */
     /* background-color: #f31515a2; */
     /* background-color: #b7d410d0; */
-    font-size: calc(10px + 2vmin);
-    color: white; 
+    
+    /* font-size: calc(10px + 2vmin); */
+    /* color: white;  */
   
     min-height: 100vh;
     width: 100vw;
@@ -21,9 +22,13 @@
 
 .content {
     height: 100vh;
+    
     background-color:transparent;
-    color: white;
-    font-size: calc(10px + 2vmin);
+    /* color: white; */
+    color: inherit;
+    /* font-size: calc(10px + 2vmin); */
+    font-size: inherit;
+    
     display: flex;
     flex-direction:column;
 }

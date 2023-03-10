@@ -89,24 +89,49 @@ const Admin = (props) => {
 
     const theme = createTheme();
     
-    return (
+    // return (
+    //     <>
+    //     <ThemeProvider theme={theme}>
+    //     <Container component="main" maxWidth="xs" >
+    //         <CssBaseline />
+    //         <Box minHeight='100vh' >
+    //             {/* All page content comes here */}
+    //             <AppBar position="fixed" color="default">
+    //                 <NavTabs val={3} />
+    //                 {screenTitle()}
+    //             </AppBar>
+    //             { screenNavigate() }
+    //         </Box>
+    //     </Container>
+    //     <Footer />
+    //     </ThemeProvider>        
+    //     </>   
+    //   );
+
+      return (
         <>
         <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs" >
+        <Box class="App">
             <CssBaseline />
-            <Box minHeight='100vh' >
                 {/* All page content comes here */}
                 <AppBar position="fixed" color="default">
                     <NavTabs val={3} />
                     {screenTitle()}
                 </AppBar>
-                { screenNavigate() }
-            </Box>
-        </Container>
-        <Footer />
-        </ThemeProvider>        
-        </>   
+                <Box class="content">   
+                    <Box class="section-up">
+                        { screenNavigate() }               
+                    </Box>                
+
+                    <Box class="section-down">
+                        <Footer />
+                    </Box>
+                </Box>
+        </Box>
+        </ThemeProvider>
+        </>
       );
+
 }
 
 export default Admin

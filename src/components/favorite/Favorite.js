@@ -16,26 +16,49 @@ const Favorite = () => {
 
     const theme = createTheme();
 
-    return (
+    // return (
+    //     <>
+    //     <ThemeProvider theme={theme}>
+    //     {/* <Container component="main" maxWidth="xs" sx={{ minHeight: '100vh'}}> */}
+    //     <Container component="main" maxWidth="xs" >
+    //         <CssBaseline />
+    //         <Box minHeight='100vh' >
+    //             {/* All page content comes here */}
+    //             <AppBar position="fixed" color="default">
+    //                 <NavTabs val={2} />
+    //             </AppBar>
+    //             <Box sx={{ pt:7, px: 0, my: 0 }} ></Box>
+    //             <Box sx={{ mx: 1, my: 1, justifyContent: 'center' }}>
+    //                 <Alert severity="info">Check favorite page out!</Alert>              
+    //             </Box>
+
+    //         </Box>            
+    //      </Container>
+    //      <Footer />
+    //     </ThemeProvider>        
+    //     </>
+    //   );
+
+      return (
         <>
         <ThemeProvider theme={theme}>
-        {/* <Container component="main" maxWidth="xs" sx={{ minHeight: '100vh'}}> */}
-        <Container component="main" maxWidth="xs" >
+        <Box class="App">
             <CssBaseline />
-            <Box minHeight='100vh' >
                 {/* All page content comes here */}
                 <AppBar position="fixed" color="default">
                     <NavTabs val={2} />
                 </AppBar>
-                <Box sx={{ pt:7, px: 0, my: 0 }} ></Box>
-                <Box sx={{ mx: 1, my: 1, justifyContent: 'center' }}>
-                    <Alert severity="info">Check favorite page out!</Alert>              
-                </Box>
+                <Box class="content">   
+                    <Box class="section-up">
+                        <Alert severity="info">Check favorite page out!</Alert>               
+                    </Box>                
 
-            </Box>            
-         </Container>
-         <Footer />
-        </ThemeProvider>        
+                    <Box class="section-down">
+                        <Footer />
+                    </Box>
+                </Box>
+        </Box>
+        </ThemeProvider>
         </>
       );
 }
