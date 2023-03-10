@@ -10,9 +10,9 @@ const useContactsSearch = () => {
         }
         // return the item which contains the text
         else {
-            return  el.fname.toLowerCase().includes(text) 
+            return  el.fname.toLowerCase().includes(text.toLowerCase()) 
                     || 
-                    el.cpse && el.cpse.toLowerCase().includes(text)
+                    el.cpse && el.cpse.toLowerCase().includes(text.toLowerCase())
         }
     })  
 
