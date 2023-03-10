@@ -23,7 +23,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import useAuth from "../../iam/hooks/useAuth";
-import ExtSnackbar, {ERROR,INFO,SUCCESS} from "../custom/ExtSnackbar";
+//import ExtSnackbar, {ERROR,INFO,SUCCESS} from "../custom/ExtSnackbar";
+import {showExtSnackBar, ERROR, INFO, SUCCESS} from "../custom/ExtSnackbar";
 import ExtCircularProgress from "../custom/ExtCircularProgress";
 
 const ContactList = (props) => {
@@ -160,7 +161,8 @@ const ContactList = (props) => {
                 });
                 isMounted && console.log(response.data);
 
-                handleShowSnackBar(SUCCESS);
+                //handleShowSnackBar(SUCCESS);
+                showExtSnackBar(SUCCESS);
 
                 const y = '' + ( (deleteElement.ix - 2)<0 ) ? 0 : (deleteElement.ix - 2)
                 setAuth(json => { 
@@ -186,7 +188,8 @@ const ContactList = (props) => {
                     navigate('/login', { state: { from: location }, replace: true });
                 }
                 
-                handleShowSnackBar(ERROR);
+                //handleShowSnackBar(ERROR);
+                showExtSnackBar(ERROR);
             }
         }
 
@@ -221,11 +224,11 @@ const ContactList = (props) => {
         handleScreen(action,json);
     }
 
-    const childRef = useRef();
+    // const childRef = useRef();
 
-    const handleShowSnackBar = (type, text) => {
-        childRef.current.showSnackBar(type, text);
-    };
+    // const handleShowSnackBar = (type, text) => {
+    //     childRef.current.showSnackBar(type, text);
+    // };
    
     const theme = createTheme();
     
@@ -233,7 +236,8 @@ const ContactList = (props) => {
         <>
             <Box sx={{ pt:6, px: 0, my: 0 }} ></Box>
             
-            <ExtSnackbar ref={childRef} />
+            {/* <ExtSnackbar ref={childRef} /> */}
+            {/* <ExtSnackbar /> */}
 
             <Box sx={{ mx: 0, my: 0 }} >
                 {   

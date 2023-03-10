@@ -29,7 +29,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import useAxiosPrivate from '../../iam/hooks/useAxiosPrivate';
 import CancelButton from '../custom/CancelButton';
-import ExtSnackbar, {ERROR,INFO,SUCCESS} from "../custom/ExtSnackbar";
+import ExtSnackbar, {showExtSnackBar, ERROR,INFO,SUCCESS} from "../custom/ExtSnackbar";
 import useAuth from "../../iam/hooks/useAuth";
 
 const ContactAdd = (props) => {
@@ -252,7 +252,8 @@ const ContactAdd = (props) => {
   //const childRef = useRef();
 
   const handleShowSnackBar = (type, text) => {
-      childRef.current.showSnackBar(type, text);
+      //childRef.current.showSnackBar(type, text);
+      showExtSnackBar(type, text);
   };
 
   return (

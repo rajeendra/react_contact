@@ -35,16 +35,21 @@ import * as React from 'react';
 import { forwardRef, useImperativeHandle } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 
-const ExtSnackbar = forwardRef((props, ref) => {
+export let showExtSnackBar = null;
 
-    useImperativeHandle(ref, () => ({
-        showSnackBar: (type, text) => {
-            type==ERROR && showErrorSnackBar(text);
-            type==SUCCESS && showSuccessSnackBar(text);
-            type==INFO && text!=null && showInfoSnackBar(text);
-        }
-     }));
+//const ExtSnackbar = forwardRef((props, ref) => {
+const ExtSnackbar = (props, ref) => {
+
+    // useImperativeHandle(ref, () => ({
+    //     showSnackBar: showExtSnackBar
+    //  }));
     
+    showExtSnackBar = (type, text) => {
+        type==ERROR && showErrorSnackBar(text);
+        type==SUCCESS && showSuccessSnackBar(text);
+        type==INFO && text!=null && showInfoSnackBar(text);        
+    }
+
     const [message, setMessage] = React.useState(
         {
             open : false,
@@ -94,7 +99,7 @@ const ExtSnackbar = forwardRef((props, ref) => {
         </>
     );
 
-})
+}
 
 export const ERROR = 'error'
 export const SUCCESS = 'success'

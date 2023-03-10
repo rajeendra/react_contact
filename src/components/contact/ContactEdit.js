@@ -28,7 +28,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import useAxiosPrivate from '../../iam/hooks/useAxiosPrivate';
 import CancelButton from '../custom/CancelButton';
-import {ERROR,INFO,SUCCESS} from "../custom/ExtSnackbar";
+import { ERROR,INFO,SUCCESS, showExtSnackBar} from "../custom/ExtSnackbar";
 import useAuth from "../../iam/hooks/useAuth";
 
 /* { id: '631977da9b7d7339f05f8f06' } 
@@ -113,7 +113,7 @@ const ContactEdit = (props) => {
 
     const theme = createTheme();
     const { handleScreen } = props;
-    const { childRef } = props;
+    //const { childRef } = props;
 
     const [open, setOpen] = React.useState(false);
     const handleDelete = (nmb) => {
@@ -277,12 +277,15 @@ const ContactEdit = (props) => {
     }
 
     const handleShowSnackBar = (type, text) => {
-        childRef.current.showSnackBar(type, text);
+        //childRef.current.showSnackBar(type, text);
+        showExtSnackBar(type, text);
     };
   
     return (
         <>
             <Box sx={{ pt:6, px: 0, my: 0 }} ></Box>
+
+            {/* <ExtSnackbar /> */}
 
             <Box sx={{ mx: 0, my: 1 }}>
                 <TextField
