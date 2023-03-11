@@ -73,14 +73,16 @@ const ContactList = (props) => {
         const getContacts = async () => {
             try {
                 
+                // get contacts from app context if available
                 if( !(props.fromScr=='add')  && auth?.fetchedContacts?.length>0){
                     console.log('Fetching data from application context..')
 
-                    // get contacts from app context if available
+                    // if return from Contact edit save
                     if(auth?.selectedContact){
                         const ctx = [];
                         auth?.fetchedContacts.map(e=>{
                           if (e._id && e._id === auth?.selectedContact._id ) 
+                            // update the fetchedContacts with selectedContact
                             ctx.push( auth?.selectedContact ) 
                           else if(e._id)  
                             ctx.push( e )   
@@ -175,7 +177,7 @@ const ContactList = (props) => {
 
                 const ctx = [];
                 contacts.map(e=>{
-                  if (e._id != response.data._id ) 
+                  if (e._id != response.data?._id ) 
                     ctx.push( e )   
                 }) 
                 setContacts(ctx)               
@@ -266,7 +268,7 @@ const ContactList = (props) => {
                             )}
                         </List>                        
                     ) 
-                    : contacts?.length==0?
+                    : contacts?.length==0 ?
                     <Box sx={ { mt:3 }}>
                         <Alert severity="error">No users to display</Alert>
                     </Box> 

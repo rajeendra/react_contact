@@ -89,7 +89,8 @@ const Contact = () => {
         })        
 
         const filteredResult = searchFilter(sTxt);
-        setContacts(filteredResult);        
+        //setContacts(filteredResult);        
+        filteredResult?.length > 0 && setContacts(filteredResult);        
     }
 
     const handleClear = () => {
