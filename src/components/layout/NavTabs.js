@@ -8,6 +8,7 @@ import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import SettingsIcon from '@mui/icons-material/Settings';
+import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 
 import useLogout from "../../iam/hooks/useLogout";
 
@@ -28,9 +29,12 @@ const NavTabs = (props) => {
         navigate('/favorite');
       }                    
       if(newValue==3){
-        navigate('/admin');
+        navigate('/albums');
       }                    
       if(newValue==4){
+        navigate('/admin');
+      }                    
+      if(newValue==5){
           signOut();
       }
     };
@@ -49,6 +53,7 @@ const NavTabs = (props) => {
           <Tab icon={<CottageIcon />} aria-label="home" />
           <Tab icon={<ContactPhoneIcon />} aria-label="contacts" />
           <Tab icon={<FavoriteIcon />} aria-label="Favorite" />
+          <Tab icon={<PhotoLibraryIcon />} aria-label="albums" />
           <Tab icon={<SettingsIcon />} aria-label="Settings" />
           <Tab icon={<ExitToAppIcon />} aria-label="Logout" />
         </Tabs>

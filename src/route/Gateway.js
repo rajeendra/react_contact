@@ -1,6 +1,7 @@
 import Dashboard from '../components/dashboard/Dashboard';
 import Contact from '../components/contact/Contact';
 import Favorite from '../components/favorite/Favorite';
+import Albums from '../components/albums/Albums';
 import Admin from '../components/admin/Admin';
 import Layout from '../components/layout/Layout';
 
@@ -65,6 +66,9 @@ function Gateway(props) {
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
             <Route path="favorite" element={<Favorite />} />
           </Route>
+          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+            <Route path="albums" element={<Albums />} />
+          </Route>          
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
             <Route path="admin" element={<Admin admin={admin} setAdmin={setAdmin}/>} />
           </Route>          

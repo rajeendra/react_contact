@@ -115,7 +115,7 @@ const Admin = (props) => {
             <CssBaseline />
                 {/* All page content comes here */}
                 <AppBar position="fixed" color="default">
-                    <NavTabs val={3} />
+                    <NavTabs val={4} />
                     {screenTitle()}
                 </AppBar>
                 <Box class="content">   
