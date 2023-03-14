@@ -90,7 +90,7 @@ const Contact = () => {
 
         const filteredResult = searchFilter(sTxt);
         //setContacts(filteredResult);        
-        filteredResult?.length > 0 && setContacts(filteredResult);        
+        filteredResult?.length > 0 | e =='click' && setContacts(filteredResult);        
     }
 
     const handleClear = () => {
