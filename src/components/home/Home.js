@@ -4,7 +4,7 @@ import Gateway from "../../route/Gateway";
 
 function Home() {
 
-    const [biz, setBiz] = useState({home:{signinOnce:false},admin:{},contact:{}});
+    const [biz, setBiz] = useState({home:{signinOnce:false},admin:{},contact:{},album:{}});
   
     return (
       <Gateway biz={biz} setBiz={setBiz} />

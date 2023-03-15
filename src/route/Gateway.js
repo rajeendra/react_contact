@@ -1,7 +1,7 @@
 import Dashboard from '../components/dashboard/Dashboard';
 import Contact from '../components/contact/Contact';
 import Favorite from '../components/favorite/Favorite';
-import Albums from '../components/albums/Albums';
+import Album from '../components/album/Album';
 import Admin from '../components/admin/Admin';
 import Layout from '../components/layout/Layout';
 
@@ -45,6 +45,13 @@ function Gateway(props) {
     setBiz( {...biz, contact: {...contact, ...obj} })
   }
 
+  // Context - album model
+  const album = biz.album
+  const setAlbum = (obj) =>{
+    setBiz( {...biz, album: {...album, ...obj} })
+  }
+
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -67,7 +74,7 @@ function Gateway(props) {
             <Route path="favorite" element={<Favorite />} />
           </Route>
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-            <Route path="albums" element={<Albums />} />
+            <Route path="album" element={<Album album={album} setAlbum={setAlbum} />} />
           </Route>          
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
             <Route path="admin" element={<Admin admin={admin} setAdmin={setAdmin}/>} />

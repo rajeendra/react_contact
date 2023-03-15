@@ -29,7 +29,7 @@ const NavTabs = (props) => {
         navigate('/favorite');
       }                    
       if(newValue==3){
-        navigate('/albums');
+        navigate('/album');
       }                    
       if(newValue==4){
         navigate('/admin');
