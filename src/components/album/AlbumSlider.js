@@ -34,7 +34,11 @@ const AlbumSlider = () => {
   
     //const handleStepChange = (step: number) => {
     const handleStepChange = (step) => {
-      //setActiveStep(step);
+        //console.log(step)
+        //console.log(activeStep)
+        
+        if(step>activeStep) handleNext()
+        if(step<activeStep) handleBack()
     };
   
     return (
@@ -91,7 +95,8 @@ const AlbumSlider = () => {
           }
         />
 
-        <AutoPlaySwipeableViews
+        {/* <AutoPlaySwipeableViews */}
+        <SwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={activeStep}
           onChangeIndex={handleStepChange}
@@ -99,8 +104,12 @@ const AlbumSlider = () => {
         >
           {images.map((step, index) => (
             <div key={step.label}>
-              {/* {Math.abs(activeStep - index) <= 2 ? ( */}
-              {Math.abs(activeStep - index) <= 0 ? (
+              
+              { 
+              // Math.abs(activeStep - index) <= 2  
+              Math.abs(activeStep - index) <= 0
+              ? 
+              (
                 <Box
                   //display='flex'
                   //justifyContent='center'
@@ -115,10 +124,14 @@ const AlbumSlider = () => {
                   src={step.imgPath}
                   alt={step.label}
                 />
-              ) : null}
+              ) 
+              : 
+              null
+              }
             </div>
           ))}
-        </AutoPlaySwipeableViews>
+        {/* </AutoPlaySwipeableViews> */}
+        </SwipeableViews>
       </Box>
     );
 }
