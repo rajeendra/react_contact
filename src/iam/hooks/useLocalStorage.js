@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import * as Constant from "../constent";
 
 // This hook received a key assign to a state which use to store a value in localStorage
 // First it fetch the value from localStorage if not available the init value will set
@@ -8,10 +9,10 @@ export const getLocalValue = (key, initValue) => {
     //const [ persist ] = useLocalStorage( 'persist' , false);
 
     //SSR Next.js 
-    if (typeof window === 'undefined') return initValue;
+    if (typeof window === Constant.TEXT_UNDEFINED) return initValue;
     
     // Get the value of SignIn page's <Remember me> 
-    const persist = JSON.parse(localStorage.getItem('persist'));
+    const persist = JSON.parse(localStorage.getItem(Constant.STORE_KEY_PERSIST));
 
     // if a value is already store 
     const localValue = persist && JSON.parse(localStorage.getItem(key));

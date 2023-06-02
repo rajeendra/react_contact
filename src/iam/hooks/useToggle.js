@@ -8,7 +8,8 @@ const useToggle = (key, initValue) => {
     // This function ( passing to Signin page ) call by checkbox's onChange={toggleCheck}
     const toggle = (value) => {
         setValue(prev => {
-            return typeof value === 'boolean' ? value : !prev;
+            //return typeof value === 'boolean' ? value : !prev;
+            return !prev;
         })
     }
 

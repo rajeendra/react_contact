@@ -1,5 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import * as Constant from '../constent';
+
 //import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import Link from '@mui/material/Link';
@@ -40,7 +42,7 @@ function SignIn(props) {
 
     // use seperate state to user than the username in the formValues
     // use useEffect() to sync value of user with the value of username in the formValues
-    const [user, resetUser, userAttribs] = useInput(STORE_KEY_USER, '')
+    const [user, resetUser, userAttribs] = useInput(Constant.STORE_KEY_USER, '')
     
     // Not in use 
     //const [pwd, setPwd] = useState('');
@@ -49,7 +51,7 @@ function SignIn(props) {
     const [errMsg, setErrMsg] = useState('');
    
     // Keep Remember Me
-    const [check, toggleCheck] = useToggle(STORE_KEY_PERSIST, false);
+    const [check, toggleCheck] = useToggle(Constant.STORE_KEY_PERSIST, false);
 
     // set initial focus to username
     useEffect(() => {
@@ -415,7 +417,7 @@ function SignIn(props) {
   );
 }  
 
-export const STORE_KEY_USER = 'user-key'
-export const STORE_KEY_PERSIST = 'persist'
+//export const STORE_KEY_USER = 'user-key'
+//export const STORE_KEY_PERSIST = 'persist'
 
 export default SignIn;
