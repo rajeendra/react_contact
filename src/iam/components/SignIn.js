@@ -27,6 +27,7 @@ import useInput from '../hooks/useInput';
 import useToggle from '../hooks/useToggle';
 
 import axios from '../../api/axios';
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 const LOGIN_URL = '/auth';
 
 function SignIn(props) {
@@ -39,6 +40,8 @@ function SignIn(props) {
 
     const userRef = useRef();
     const errRef = useRef();
+    const formRef = useRef();
+    const testRef = useRef();
 
     // use seperate state to user than the username in the formValues
     // use useEffect() to sync value of user with the value of username in the formValues
@@ -55,8 +58,19 @@ function SignIn(props) {
 
     // set initial focus to username
     useEffect(() => {
-        userRef.current.focus();
-    }, [])  
+      setFormValues({ ...formValues, username: user });
+      //userRef.current.focus();
+      //formRef.current.focus();
+      
+      //testRef.current.focus();
+      //testRef.current.click();
+      //testFun()
+      
+    }, [])
+    
+    const testFun = (obj) => {
+      setErrMsg('testFun worked');
+    }
 
     // Not in use
     // useEffect(() => {
@@ -79,7 +93,7 @@ function SignIn(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormValues({ ...formValues, username: user });
+    setFormValues({ ...formValues, username: user});
     setFormErrors(validate(formValues));
     submit();
   };
@@ -303,6 +317,7 @@ function SignIn(props) {
                     flexDirection: 'column',
                     alignItems: 'center',
                     // minHeight: 'calc(100vh - 0px)',
+                    
                 }}
                 >
                   <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -326,10 +341,12 @@ function SignIn(props) {
                           label="Username"
                           name="username"
                           autoComplete="on"
-                          //autoFocus
+                          autoFocus
                           
                           //value={formValues.username}
                           //onChange={handleChange}
+                          
+                          //{...userAttribs}
                           onChange={{...userAttribs}.onChange}
                           value={{...userAttribs}.value}
                           
@@ -357,7 +374,9 @@ function SignIn(props) {
                           required
                           fullWidth
                           name="password"
-                          label="Password"
+                          //label="Password"
+                          //label={formValues.password.length>0 ? '' : 'password'}
+                          //label=""  
                           type="password"
                           id="password"
                           autoComplete="current-password"
@@ -380,9 +399,26 @@ function SignIn(props) {
                           type="submit"
                           fullWidth
                           variant="contained"
+                          //variant="outlined"
                           sx={{ mt: 3, mb: 2 }}
+                          color="success"
+                          //color="error"
                       >
                       Sign In
+                      </Button>
+
+                      <Button
+                          //type="submit"
+                          onClick={() => testFun()}
+                          fullWidth
+                          variant="contained"
+                          //variant="outlined"
+                          sx={{ mt: 3, mb: 2, display:'none' }}
+                          color="success"
+                          //color="error"
+                          ref={testRef}
+                      >
+                      Click me
                       </Button>
 
                       <Grid container sx={{ ml: 1 }}>
