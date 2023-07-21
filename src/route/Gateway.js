@@ -64,14 +64,14 @@ function Gateway(props) {
         <Route element={<PersistLogin home={home} />}>
         {/* <Route > */}
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Dashboard home={home} setHome={setHome} />} />
           </Route>
           <Route element={<RequireAuth allowedRoles={[ROLES.Editor, ROLES.Admin]} />}>
             {/* /:id and  key= added just to test*/}
             <Route path="contact/:id" key={new Date().getTime()}  element={<Contact />} />
           </Route>
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-            <Route path="favorite" element={<Favorite />} />
+            <Route path="favorite" element={<Favorite home={home} />} />
           </Route>
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
             <Route path="album" element={<Album album={album} setAlbum={setAlbum} />} />

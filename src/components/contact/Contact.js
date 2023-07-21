@@ -34,7 +34,8 @@ const Contact = () => {
     const { auth, setAuth } = useAuth(); 
 
     const [contacts, setContacts] = useState();
-    const [searchFilter] = useContactsSearch();
+ // const [searchFilter] = useContactsSearch();
+    const {searchFilter} = useContactsSearch();
 
     const [toScreen, setToScreen] = useState('list');
     const [fromScreen, setFromScreen] = useState('');
@@ -72,7 +73,7 @@ const Contact = () => {
         })
 
         handleScreen(view);
-    }     
+    }
     
     const handleFilterContacts = (e) => {
         const element = document.getElementById('searchTxt')

@@ -12,8 +12,8 @@ import AppBar from '@mui/material/AppBar';
 
 import Footer from '../layout/Footer';
 
-const Favorite = () => {
-
+const Favorite = (props) => {
+    const { home } = props
     const theme = createTheme();
 
     // return (
@@ -50,7 +50,7 @@ const Favorite = () => {
                 </AppBar>
                 <Box class="content">   
                     <Box class="section-up">
-                        <Alert severity="info">Check favorite page out!</Alert>               
+                        <Alert severity="info">Check favorite page out! - {home.appCount}</Alert>               
                     </Box>                
 
                     <Box class="section-down">

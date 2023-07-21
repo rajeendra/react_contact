@@ -20,7 +20,21 @@ const useContactsSearch = () => {
         return auth?.fetchedContacts ? searchFilterExc(text) : []; 
     }
 
-    return [searchFilter];
+    const addNumbers = (num1, num2) => {
+        return num1 + num2;
+    }
+
+    // return [searchFilter];
+    // return [searchFilter, addNumbers];
+    // This is the way should return when multiple return values are available..
+    // ..to enable partly fetch at using time
+    // ex: const {one, three} = useXXX();
+    // ex: const {addNumbers} = useContactsSearch();
+    return {
+        searchFilter,
+        addNumbers
+    };
+        
 }
 
 export default useContactsSearch

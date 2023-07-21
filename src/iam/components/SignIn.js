@@ -64,12 +64,21 @@ function SignIn(props) {
       
       //testRef.current.focus();
       //testRef.current.click();
-      //testFun()
-      
+      //testFun();
+      testFunAnother();
+
     }, [])
-    
+
+    // code snippets
+    // ()=>{} // anonymous function
+    // useEffect( ()=>{}, [] ) // passing anonymous function
+    // assigning anonymous function to const
     const testFun = (obj) => {
       setErrMsg('testFun worked');
+    }
+    // regular function
+    function testFunAnother(params) {
+      setHome({appCount: 0})
     }
 
     // Not in use
@@ -94,6 +103,7 @@ function SignIn(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormValues({ ...formValues, username: user});
+    // if any change to formErrors useEffect triggers to set isSubmit
     setFormErrors(validate(formValues));
     submit();
   };
@@ -183,274 +193,198 @@ function SignIn(props) {
 
   const theme = createTheme();
   
-  //  return(
-  //   <>
-  //   <ThemeProvider theme={theme}>
-  //   <Container component="main" maxWidth="xs">
-  //       <CssBaseline />
-  //       <Box
-  //       sx={{
-  //           marginTop: 8,
-  //           display: 'flex',
-  //           flexDirection: 'column',
-  //           alignItems: 'center',
-  //           minHeight: 'calc(100vh - 0px)',
-  //       }}
-  //       >
-  //           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-  //               <LockOutlinedIcon />
-  //           </Avatar>
-  //           <Typography component="h1" variant="h5">
-  //               Sign in
-  //           </Typography>
-
-  //           {/*  Form Box  */}
-  //           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-  //               { errMsg && <Alert ref={errRef} severity="error">{errMsg}</Alert>}
-      
-  //               <TextField
-  //                   error={!formErrors.username ? false : true}
-  //                   helperText={formErrors.username}                
-  //                   margin="normal"
-  //                   required
-  //                   fullWidth
-  //                   id="username"
-  //                   label="Username"
-  //                   name="username"
-  //                   autoComplete="on"
-  //                   //autoFocus
-                    
-  //                   //value={formValues.username}
-  //                   //onChange={handleChange}
-  //                   onChange={{...userAttribs}.onChange}
-  //                   value={{...userAttribs}.value}
-                    
-  //                   ref={userRef}
-  //               />
-
-  //               <TextField
-  //                   error={!formErrors.email ? false : true}
-  //                   helperText={formErrors.email}
-  //                   margin="normal"
-  //                   required
-  //                   fullWidth
-  //                   id="email"
-  //                   label="Email Address"
-  //                   name="email"
-  //                   autoComplete="email"
-  //                   //autoFocus
-  //                   value={formValues.email}
-  //                   onChange={handleChange}
-  //               />
-  //               <TextField
-  //                   error={!formErrors.password ? false : true}
-  //                   helperText={formErrors.password}                     
-  //                   margin="normal"
-  //                   required
-  //                   fullWidth
-  //                   name="password"
-  //                   label="Password"
-  //                   type="password"
-  //                   id="password"
-  //                   autoComplete="current-password"
-  //                   value={formValues.password}
-  //                   onChange={handleChange}
-  //               />
-
-  //               <FormControlLabel
-  //                   control={
-  //                     <Checkbox value="remember" 
-  //                       color="primary" 
-  //                       id="persist"
-  //                       onChange={toggleCheck}
-  //                       checked={check}                        
-  //                     />
-  //                   }
-  //                   label="Remember me"
-  //               />
-  //               <Button
-  //                   type="submit"
-  //                   fullWidth
-  //                   variant="contained"
-  //                   sx={{ mt: 3, mb: 2 }}
-  //               >
-  //               Sign In
-  //               </Button>
-
-  //               <Grid container sx={{ ml: 1 }}>
-  //                 <Grid item xs>
-  //                     <Link href="#" variant="body2">
-  //                     Forgot password?
-  //                     </Link>
-  //                 </Grid>
-                  
-  //                 <Grid item sx={{ mr: 2, cursor: 'pointer'}}  >
-  //                  <Box onClick={() => navigate("/register")}>
-  //                   <Link variant="body2">
-  //                     Sign Up
-  //                   </Link> 
-  //                   </Box> 
-  //                 </Grid>
-  //               </Grid>
-
-  //           </Box>
-        
-  //       </Box>
-  //   </Container>
-  //   <Footer />
-  //   </ThemeProvider>
-  //   </>
-  // )
-
-  return (
-    <>
-    <ThemeProvider theme={theme}>
-    <div class="App">
-        <CssBaseline />
-            {/* All page content comes here */}
-            <div class="content">   
-                <div class="section-up">
-                <Box
-                sx={{
-                    // marginTop: 8,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    // minHeight: 'calc(100vh - 0px)',
-                    
-                }}
-                >
-                  <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                      <LockOutlinedIcon />
-                  </Avatar>
-                  <Typography component="h1" variant="h5">
-                      Sign in
-                  </Typography>
-
-                  {/*  Form Box  */}
-                  <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                      { errMsg && <Alert ref={errRef} severity="error">{errMsg}</Alert>}
-            
-                      <TextField
-                          error={!formErrors.username ? false : true}
-                          helperText={formErrors.username}                
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="username"
-                          label="Username"
-                          name="username"
-                          autoComplete="on"
-                          autoFocus
+  const signIn = () => {
+    return (
+      <>
+      <ThemeProvider theme={theme}>
+      <div class="App">
+          <CssBaseline />
+              {/* All page content comes here */}
+              <div class="content">   
+                  <div class="section-up">
+                  <Box
+                  sx={{
+                      // marginTop: 8,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      // minHeight: 'calc(100vh - 0px)',
+                      
+                  }}
+                  >
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign in
+                    </Typography>
+  
+                    {/*  Form Box  */}
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                        { errMsg && <Alert ref={errRef} severity="error">{errMsg}</Alert>}
+              
+                        <TextField
+                            error={!formErrors.username ? false : true}
+                            helperText={formErrors.username}                
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="username"
+                            label="Username"
+                            name="username"
+                            autoComplete="on"
+                            autoFocus
+                            
+                            //value={formValues.username}
+                            //onChange={handleChange}
+                            
+                            //{...userAttribs}
+                            onChange={{...userAttribs}.onChange}
+                            value={{...userAttribs}.value}
+                            
+                            ref={userRef}
+                        />
+  
+                        <TextField
+                            error={!formErrors.email ? false : true}
+                            helperText={formErrors.email}
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            //autoFocus
+                            value={formValues.email}
+                            onChange={handleChange}
+                        />
+                        <TextField
+                            error={!formErrors.password ? false : true}
+                            helperText={formErrors.password}                     
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            //label="Password"
+                            //label={formValues.password.length>0 ? '' : 'password'}
+                            //label=""  
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                            value={formValues.password}
+                            onChange={handleChange}
+                        />
+  
+                        <FormControlLabel
+                            control={
+                              <Checkbox value="remember" 
+                                color="primary" 
+                                id="persist"
+                                onChange={toggleCheck}
+                                checked={check}                        
+                              />
+                            }
+                            label="Remember me"
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            //variant="outlined"
+                            sx={{ mt: 3, mb: 2 }}
+                            color="success"
+                            //color="error"
+                        >
+                        Sign In
+                        </Button>
+  
+                        <Button
+                            //type="submit"
+                            onClick={() => testFun()}
+                            fullWidth
+                            variant="contained"
+                            //variant="outlined"
+                            sx={{ mt: 3, mb: 2, display:'none' }}
+                            color="success"
+                            //color="error"
+                            ref={testRef}
+                        >
+                        Click me
+                        </Button>
+  
+                        <Grid container sx={{ ml: 1 }}>
+                          <Grid item xs>
+                              <Link href="#" variant="body2">
+                              Forgot password?
+                              </Link>
+                          </Grid>
                           
-                          //value={formValues.username}
-                          //onChange={handleChange}
-                          
-                          //{...userAttribs}
-                          onChange={{...userAttribs}.onChange}
-                          value={{...userAttribs}.value}
-                          
-                          ref={userRef}
-                      />
-
-                      <TextField
-                          error={!formErrors.email ? false : true}
-                          helperText={formErrors.email}
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="email"
-                          label="Email Address"
-                          name="email"
-                          autoComplete="email"
-                          //autoFocus
-                          value={formValues.email}
-                          onChange={handleChange}
-                      />
-                      <TextField
-                          error={!formErrors.password ? false : true}
-                          helperText={formErrors.password}                     
-                          margin="normal"
-                          required
-                          fullWidth
-                          name="password"
-                          //label="Password"
-                          //label={formValues.password.length>0 ? '' : 'password'}
-                          //label=""  
-                          type="password"
-                          id="password"
-                          autoComplete="current-password"
-                          value={formValues.password}
-                          onChange={handleChange}
-                      />
-
-                      <FormControlLabel
-                          control={
-                            <Checkbox value="remember" 
-                              color="primary" 
-                              id="persist"
-                              onChange={toggleCheck}
-                              checked={check}                        
-                            />
-                          }
-                          label="Remember me"
-                      />
-                      <Button
-                          type="submit"
-                          fullWidth
-                          variant="contained"
-                          //variant="outlined"
-                          sx={{ mt: 3, mb: 2 }}
-                          color="success"
-                          //color="error"
-                      >
-                      Sign In
-                      </Button>
-
-                      <Button
-                          //type="submit"
-                          onClick={() => testFun()}
-                          fullWidth
-                          variant="contained"
-                          //variant="outlined"
-                          sx={{ mt: 3, mb: 2, display:'none' }}
-                          color="success"
-                          //color="error"
-                          ref={testRef}
-                      >
-                      Click me
-                      </Button>
-
-                      <Grid container sx={{ ml: 1 }}>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                            Forgot password?
-                            </Link>
+                          <Grid item sx={{ mr: 2, cursor: 'pointer'}}  >
+                          <Box onClick={() => navigate("/register")}>
+                            <Link variant="body2">
+                              Sign Up
+                            </Link> 
+                            </Box> 
+                          </Grid>
                         </Grid>
-                        
-                        <Grid item sx={{ mr: 2, cursor: 'pointer'}}  >
-                        <Box onClick={() => navigate("/register")}>
-                          <Link variant="body2">
-                            Sign Up
-                          </Link> 
-                          </Box> 
-                        </Grid>
-                      </Grid>
+  
+                    </Box>
+          
+                  </Box>            
+                   
+                  </div>                
+  
+                  <div class="section-down">
+                      <Footer />
+                  </div>
+              </div>
+      </div>
+      </ThemeProvider>
+      </>
+    );
+  }
 
-                  </Box>
-        
-                </Box>            
-                 
-                </div>                
+  const testUI = () => {
+    return (
+      <>
+      <ThemeProvider theme={theme}>
+      <div class="App">
+          <CssBaseline />
+              {/* All page content comes here */}
+              <div class="content">   
+                  <div class="section-up">
+                  <Box
+                  sx={{
+                      // marginTop: 8,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      // minHeight: 'calc(100vh - 0px)',
+                      
+                  }}
+                  >
+                  </Box>            
+                   
+                  </div>                
+  
+                  <div class="section-down">
+                      <Footer />
+                  </div>
+              </div>
+      </div>
+      </ThemeProvider>
+      </>
+    );
+  }
 
-                <div class="section-down">
-                    <Footer />
-                </div>
-            </div>
-    </div>
-    </ThemeProvider>
-    </>
-  );
+  useEffect(()=>{},[])
+
+  return(
+    //signIn
+    signIn()
+    //testUI()
+  )
 }  
 
 //export const STORE_KEY_USER = 'user-key'
