@@ -61,11 +61,13 @@ function SignIn(props) {
       setFormValues({ ...formValues, username: user });
       //userRef.current.focus();
       //formRef.current.focus();
+
+      initHomeValues();
       
       //testRef.current.focus();
       //testRef.current.click();
       //testFun();
-      testFunAnother();
+      //testFunAnother();
 
     }, [])
 
@@ -78,7 +80,7 @@ function SignIn(props) {
     }
     // regular function
     function testFunAnother(params) {
-      setHome({appCount: 0})
+      setErrMsg('testFunAnother worked');
     }
 
     // Not in use
@@ -94,6 +96,12 @@ function SignIn(props) {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+
+  const initHomeValues = () => {
+    // Eech login these values initiate
+    // App values (biz.home) otherwise remain the same was at logout time
+    // setHome({appCount: 0, rate:0})
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;

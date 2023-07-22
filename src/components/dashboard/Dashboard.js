@@ -8,19 +8,24 @@ import NavTabs from '../layout/NavTabs';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
+import RatingStars from '../custom/RatingStars';
 
 import Footer from '../layout/Footer';
 import useContactsSearch from '../hooks/useContactsSearch';
 
 const Dashboard = (props) => {
-    // only the function addNumbers() bringing in here, Other functions not bringing
+    const { home, setHome } = props
+
+    // only the hook's function addNumbers() bringing in here, Other functions not bringing
     const { addNumbers }  = useContactsSearch();
     
     const [ msg, setMsg ] = React.useState("Check home page down under out!");
     const [ count, setCount] = React.useState(0);
     const [ onceClicked, setOnceClicked ] = React.useState(false);
-    const { home, setHome } = props
-    const theme = createTheme();
+
+    const handleRate = (rate) => {
+        setHome({rate:rate})
+    }
 
     const handleClick = () => {
         // Note, state value count update immediately reflect at UI 
@@ -32,12 +37,12 @@ const Dashboard = (props) => {
     // In this occasion, after counter changed
     React.useEffect(
         ()=>{
-            const x = home.appCount;
             // use a condition like this to have a conditional control over a effect
-            // in this occation onceClicked will pause the operation at the loding time..
+            // In this occation onceClicked will pause the operation at the loding time..
             // ..and it will start after the user click the button for the first time..
             // ..each login 
-            onceClicked && setHome({appCount: x+1 })
+            const x = home.appCount + 1;
+            onceClicked && setHome({appCount: x })
             
             // exaple of a hook usage which returns a multiple values
             // Note, here state msg gonna update after home state update, .. 
@@ -45,6 +50,8 @@ const Dashboard = (props) => {
             onceClicked && setMsg( addNumbers(2,3) );
         }
     ,[count])   
+
+    const theme = createTheme();
 
     return (
         <>
@@ -58,7 +65,7 @@ const Dashboard = (props) => {
                 <Box class="content">   
                     <Box class="section-up">
                         <Alert severity="info">Check home page out! - {home.appCount} - {count} </Alert>              
-                        <Alert variant="outlined" color="error">
+                        <Alert sx={{ mt: 1}} variant="outlined" color="error">
                             We've built the foundational components for your design system, 
                             enabling you to launch that cool product you've been thinking about even faster. 
                             We got your back!
@@ -70,7 +77,18 @@ const Dashboard = (props) => {
                         >
                             Click
                         </Button>
-                                           
+                        <Box
+                            sx={{
+                                mt: 1,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                // justifyContent: 'end',
+                            }}
+                        >
+                            {/* <Alert>One</Alert> */}
+                            {/* <Alert>Two</Alert> */}
+                            <RatingStars rate={home.rate} handleRate={handleRate} ></RatingStars>
+                        </Box>
                     </Box>                
 
                     <Box class="section-down">
