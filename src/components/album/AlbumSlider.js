@@ -40,11 +40,26 @@ const AlbumSlider = () => {
         if(step>activeStep) handleNext()
         if(step<activeStep) handleBack()
     };
+
+    // In this way we can findout image height/width for any purpose..
+    // ..befoure it load in page  
+    const imageHeight = (index) => {
+      const image = images[index]
+      
+      const img = new Image();
+      img.id = 'imgId';
+      img.src = image.imgPath;
+
+      const height = img.naturalHeight;
+
+      return ( height > 500 ? '100%' : '250' )
+    }
   
     return (
       <Box sx={{ 
             mt:6, 
-            flexGrow: 1 
+            flexGrow: 1, 
+            //height: '100vh'
         }}
       >
  
@@ -67,6 +82,7 @@ const AlbumSlider = () => {
           steps={0}
           position="static"
           activeStep={activeStep}
+          //sx={{height: 0}}
             
           nextButton={
             <Button
@@ -102,12 +118,16 @@ const AlbumSlider = () => {
           onChangeIndex={handleStepChange}
           enableMouseEvents
         >
-          {images.map((step, index) => (
-            <div key={step.label}>
+          {images.map((image, index) => (
+
+            <div key={image.label}>
               
               { 
-              // Math.abs(activeStep - index) <= 2  
-              Math.abs(activeStep - index) <= 0
+               //(-1, 0) R ( 0, 1 ) R ( 1, 2 ) L ( 2, 3 ) R ( 3, 4 ) R
+               // 1 <= 2 - true
+               // Math.abs(activeStep - index) <= 2  // no white - page enlarge
+               // 1 <= 0 - false  
+               Math.abs(activeStep - index) <= 0 // white - page fit
               ? 
               (
                 <Box
@@ -115,18 +135,29 @@ const AlbumSlider = () => {
                   //justifyContent='center'
                   component="img"
                   sx={{
+                    //height: '100vh',
+                    //height: '50vh',
                     //height: 255,
+                    //height: '100%',
+                    //height: 'auto',
+                    height: imageHeight(index),
                     display: 'block',
-                    //maxWidth: 400,
+                    //maxHeight: 500,
                     overflow: 'hidden',
                     width: '100%',
                   }}
-                  src={step.imgPath}
-                  alt={step.label}
+                  src={image.imgPath}
+                  alt={image.label}
+                  
+                  //For testing 
+                  //src={image.imgPath}
+                  //alt={imageHeight(index)}
                 />
               ) 
-              : 
+              :
               null
+              //For testing
+              //(<div>activeStep: {activeStep} index: {index} Tot: {Math.abs(activeStep - index)}</div>)
               }
             </div>
           ))}
