@@ -19,7 +19,7 @@ const Dashboard = (props) => {
     // only the hook's function addNumbers() bringing in here, Other functions not bringing
     const { addNumbers }  = useContactsSearch();
     
-    const [ msg, setMsg ] = React.useState("Check home page down under out!");
+    const [ msg, setMsg ] = React.useState("The home page bottom text");
     const [ count, setCount] = React.useState(0);
     const [ onceClicked, setOnceClicked ] = React.useState(false);
 
@@ -64,7 +64,7 @@ const Dashboard = (props) => {
                 </AppBar>
                 <Box class="content">   
                     <Box class="section-up">
-                        <Alert severity="info">Check home page out! - {home.appCount} - {count} </Alert>              
+                        <Alert severity="info">Home page top text - {home.appCount} - {count} </Alert>              
                         <Alert sx={{ mt: 1}} variant="outlined" color="error">
                             We've built the foundational components for your design system, 
                             enabling you to launch that cool product you've been thinking about even faster. 
