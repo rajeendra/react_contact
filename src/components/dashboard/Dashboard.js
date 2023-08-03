@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import NavTabs from '../layout/NavTabs'; 
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import { Button } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import RatingStars from '../custom/RatingStars';
@@ -21,16 +22,23 @@ const Dashboard = (props) => {
     
     const [ msg, setMsg ] = React.useState("The home page bottom text");
     const [ count, setCount] = React.useState(0);
+    const [ number, setNumber] = React.useState(0);
     const [ onceClicked, setOnceClicked ] = React.useState(false);
 
     const handleRate = (rate) => {
         setHome({rate:rate})
     }
 
-    const handleClick = () => {
+    const handleClickOne = () => {
         // Note, state value count update immediately reflect at UI 
         setCount(val=>val+1)
         setOnceClicked(true);
+    }
+    
+    const handleClickTwo = () => {
+        // This state number just set in here but not used in anyware
+        // but ui update still happerning. it could detect by as time gets refresh
+        setNumber(val=>val+1)
     }
     
     // This is the way to carry out any operation after any state change
@@ -64,19 +72,36 @@ const Dashboard = (props) => {
                 </AppBar>
                 <Box class="content">   
                     <Box class="section-up">
-                        <Alert severity="info">Home page top text - {home.appCount} - {count} </Alert>              
+                        <Alert severity="info">Home page top text - {home.appCount} - {count}  - {new Date().getTime()}</Alert>              
                         <Alert sx={{ mt: 1}} variant="outlined" color="error">
                             We've built the foundational components for your design system, 
                             enabling you to launch that cool product you've been thinking about even faster. 
                             We got your back!
                         </Alert>  
-                        <Button
-                          sx={{ mt: 1}}  
-                          variant="contained"  
-                          onClick={ () => {handleClick('click');} }                    
-                        >
-                            Click
-                        </Button>
+                        
+                        <Grid container spacing={1}>
+                            <Grid item xs={6} md={6}>
+                                <Button
+                                sx={{ mt: 1}}  
+                                variant="contained"  
+                                onClick={ () => {handleClickOne('click');} }                    
+                                fullWidth >
+                                    Click One
+                                </Button>
+                            </Grid>
+                            <Grid item xs={6} md={6}>
+                                <Button
+                                sx={{ mt: 1}}  
+                                variant="contained"  
+                                onClick={ () => {handleClickTwo('click');} }                    
+                                fullWidth >
+                                    Click Two
+                                </Button>
+                            </Grid>
+                        </Grid>                        
+                        
+                        
+                        
                         <Box
                             sx={{
                                 mt: 1,
