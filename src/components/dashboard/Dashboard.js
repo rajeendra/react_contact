@@ -23,6 +23,8 @@ const Dashboard = (props) => {
     const [ msg, setMsg ] = React.useState("The home page bottom text");
     const [ count, setCount] = React.useState(0);
     const [ number, setNumber] = React.useState(0);
+    const [ numberOne, setNumberOne] = React.useState(1);
+    const [ numberTwo, setNumberTwo] = React.useState(2);
     const [ onceClicked, setOnceClicked ] = React.useState(false);
 
     const handleRate = (rate) => {
@@ -56,6 +58,10 @@ const Dashboard = (props) => {
             // Note, here state msg gonna update after home state update, .. 
             // .. also two time render gonna taking place
             onceClicked && setMsg( addNumbers(2,3) );
+            
+            // this demostrate how to update multiple state values at one time inside an useEffect
+            onceClicked && setNumberOne( x => x + 1 );
+            onceClicked && setNumberTwo( x => x + 1 );
         }
     ,[count])   
 
@@ -72,17 +78,31 @@ const Dashboard = (props) => {
                 </AppBar>
                 <Box class="content">   
                     <Box class="section-up">
-                        <Alert severity="info">Home page top text - {home.appCount} - {count}  - {new Date().getTime()}</Alert>              
+                        <Alert severity="info">Home page top text | Time: {new Date().getTime()}</Alert>              
+                        
+                        <Grid container spacing={1} sx={{ mt: 1}}>
+                            <Grid item xs={4} md={4}>
+                            <Alert color="success" variant="outlined" >{home.appCount}</Alert>  
+                            </Grid>
+                            <Grid item xs={4} md={4}>
+                            <Alert color="success" variant="outlined" >{count}</Alert>  
+                            </Grid>
+                            <Grid item xs={4} md={4} >
+                            <Alert color="success" icon={false} variant="outlined" > 
+                                {numberOne} {'<-'} {numberTwo} 
+                            </Alert>  
+                            </Grid>
+                        </Grid>                        
+
                         <Alert sx={{ mt: 1}} variant="outlined" color="error">
                             We've built the foundational components for your design system, 
                             enabling you to launch that cool product you've been thinking about even faster. 
                             We got your back!
                         </Alert>  
                         
-                        <Grid container spacing={1}>
+                        <Grid container spacing={1} sx={{ mt: 1}}>
                             <Grid item xs={6} md={6}>
                                 <Button
-                                sx={{ mt: 1}}  
                                 variant="contained"  
                                 onClick={ () => {handleClickOne('click');} }                    
                                 fullWidth >
@@ -91,7 +111,6 @@ const Dashboard = (props) => {
                             </Grid>
                             <Grid item xs={6} md={6}>
                                 <Button
-                                sx={{ mt: 1}}  
                                 variant="contained"  
                                 onClick={ () => {handleClickTwo('click');} }                    
                                 fullWidth >

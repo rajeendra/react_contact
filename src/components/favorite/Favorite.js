@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import NavTabs from '../layout/NavTabs';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import AppBar from '@mui/material/AppBar';
 
 import Footer from '../layout/Footer';
@@ -50,7 +51,16 @@ const Favorite = (props) => {
                 </AppBar>
                 <Box class="content">   
                     <Box class="section-up">
-                        <Alert severity="info">Check favorite page out! - {home.appCount}</Alert>               
+                        <Alert severity="info">Check favorite page out!</Alert>               
+                    
+                        <Grid container spacing={1} sx={{ mt: 1}}>
+                            <Grid item xs={4} md={4}>
+                            <Alert color="success" variant="outlined" >{home.appCount}</Alert>  
+                            </Grid>
+                            <Grid item xs={4} md={4}>
+                            <Alert color="success" variant="outlined" ></Alert>  
+                            </Grid>
+                        </Grid>                        
                     </Box>                
 
                     <Box class="section-down">
