@@ -13,9 +13,12 @@ import RatingStars from '../custom/RatingStars';
 
 import Footer from '../layout/Footer';
 import useContactsSearch from '../hooks/useContactsSearch';
+import useContextData from '../../state/useContextData';
 
 const Dashboard = (props) => {
     const { home, setHome } = props
+
+    const {contextData, setContextData} = useContextData();
 
     // only the hook's function addNumbers() bringing in here, Other functions not bringing
     const { addNumbers }  = useContactsSearch();
@@ -26,6 +29,7 @@ const Dashboard = (props) => {
     const [ numberOne, setNumberOne] = React.useState(1);
     const [ numberTwo, setNumberTwo] = React.useState(2);
     const [ onceClicked, setOnceClicked ] = React.useState(false);
+    const [ apiCallTrigger, setApiCallTrigger ] = React.useState(false);
 
     const handleRate = (rate) => {
         setHome({rate:rate})
@@ -33,8 +37,11 @@ const Dashboard = (props) => {
 
     const handleClickOne = () => {
         // Note, state value count update immediately reflect at UI 
+        // Also here multiple state update happening
         setCount(val=>val+1)
         setOnceClicked(true);
+        setContextData({ responseOne: "", responseTwo: "" }
+        );
     }
     
     const handleClickTwo = () => {
@@ -42,6 +49,40 @@ const Dashboard = (props) => {
         // but ui update still happerning. it could detect by as time gets refresh
         setNumber(val=>val+1)
     }
+
+    const handleClickThree = () => {
+        setApiCallTrigger(x => !x)
+    }
+
+    React.useEffect(
+        ()=>{
+            const response = "data api one";
+            setTimeout(function(){
+                // Code block in here execute after 2 seconds
+
+                // In thts way <Gateway /> component wwould load each time this calls
+                // so unneccesaraly data would pass as props
+                //onceClicked && setHome({responseOne: response })
+
+                // save data in cotext by uuse of createContext({}
+                onceClicked && setContextData( x => {
+                    return { ...x , responseOne: response }
+                });
+            }, 2000);   
+        }
+    ,[apiCallTrigger])   
+    React.useEffect(
+            ()=>{
+                const response = "data api two";
+                setTimeout(function(){
+                    // Code block in here execute after 4 seconds
+
+                    onceClicked && setContextData(x => {
+                        return { ...x , responseTwo: response }
+                    });
+            }, 4000);   
+        }
+    ,[apiCallTrigger])   
     
     // This is the way to carry out any operation after any state change
     // In this occasion, after counter changed
@@ -53,6 +94,8 @@ const Dashboard = (props) => {
             // ..each login 
             const x = home.appCount + 1;
             onceClicked && setHome({appCount: x })
+            // Note: insted of the way above always use app context to keep state data 
+            // Ex:  onceClicked && setContextData(x => {return { ...obj , appCount: x }});
             
             // exaple of a hook usage which returns a multiple values
             // Note, here state msg gonna update after home state update, .. 
@@ -93,28 +136,44 @@ const Dashboard = (props) => {
                             </Alert>  
                             </Grid>
                         </Grid>                        
+                        <Grid container spacing={1} sx={{ mt: 1}}>
+                            <Grid item xs={6} md={6}>
+                            <Alert color="error" variant="outlined" >{contextData?.responseOne}</Alert>  
+                            </Grid>
+                            <Grid item xs={6} md={6}>
+                            <Alert color="error" variant="outlined" >{contextData?.responseTwo}</Alert>  
+                            </Grid>
+                        </Grid>                        
 
-                        <Alert sx={{ mt: 1}} variant="outlined" color="error">
+                        {/* <Alert sx={{ mt: 1}} variant="outlined" color="error">
                             We've built the foundational components for your design system, 
                             enabling you to launch that cool product you've been thinking about even faster. 
                             We got your back!
-                        </Alert>  
+                        </Alert>   */}
                         
                         <Grid container spacing={1} sx={{ mt: 1}}>
-                            <Grid item xs={6} md={6}>
+                            <Grid item xs={4} md={4}>
                                 <Button
                                 variant="contained"  
                                 onClick={ () => {handleClickOne('click');} }                    
                                 fullWidth >
-                                    Click One
+                                    One
                                 </Button>
                             </Grid>
-                            <Grid item xs={6} md={6}>
+                            <Grid item xs={4} md={4}>
                                 <Button
                                 variant="contained"  
                                 onClick={ () => {handleClickTwo('click');} }                    
                                 fullWidth >
-                                    Click Two
+                                    Two
+                                </Button>
+                            </Grid>
+                            <Grid item xs={4} md={4}>
+                                <Button
+                                variant="contained"  
+                                onClick={ () => {handleClickThree('click');} }                    
+                                fullWidth >
+                                    Three
                                 </Button>
                             </Grid>
                         </Grid>                        
