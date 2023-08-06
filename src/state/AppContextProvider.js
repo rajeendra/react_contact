@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-// This context to hold the application date
+// This context to hold the application data
 // usage:   const {contextData, setContextData} = useContextData();
 const AppContext = createContext({});
 
