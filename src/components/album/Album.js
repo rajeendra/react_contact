@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
+import CardList from "./CardList";
 import AlbumList from './AlbumList';
 import AlbumSlider from "./AlbumSlider";
 import Footer from '../layout/Footer';
@@ -19,6 +20,16 @@ const Album = (props) => {
     const {album, setAlbum } = props
     const [app, setApp] = useState({toScreen:'albums'});
 
+    const handleToggle = (album) => {
+        if(app.toScreen == "albums"){
+            setApp( obj => { return {...obj, toScreen:'cards'} } )    
+        }
+        if(app.toScreen == "cards"){
+            setApp( obj => { return {...obj, toScreen:'albums'} } )    
+        }
+        console.log("handleToggle")  
+    }
+
     const handleAlbum = (album) => {
         album && setApp({toScreen:'album'})
         !album && setApp({toScreen:'albums'})
@@ -27,7 +38,13 @@ const Album = (props) => {
     }
 
     const screenTitle = () => {
-        switch(app.toScreen) {
+        var scr = app.toScreen;
+        var title = "Albums";
+        
+        title = (scr == "cards" ? "Cards" : "Albums")
+        scr = (scr == "cards" ? "albums" : scr)
+        
+        switch(scr) {
 
             case "albums": 
                 return  <>
@@ -44,8 +61,8 @@ const Album = (props) => {
                             }}
                         >
                                 <Box sx={ { bgcolor: 'primary.main', pl:2, pr:1, pt:0.5, mr:1, color: 'white'} }>
-                                    <Typography sx={ { px:1, my: 0.5, py:0, borderRadius: 1, bgcolor: 'primary.main'}} variant="h6" color="white">
-                                        Albums
+                                    <Typography onClick={(x)=> handleToggle(x)} sx={ { px:1, my: 0.5, py:0, borderRadius: 1, bgcolor: 'primary.main'}} variant="h6" color="white">
+                                        {title}
                                     </Typography>                                
                                 </Box>
           
@@ -89,6 +106,8 @@ const Album = (props) => {
 
     const screenNavigate = () => {
         switch(app.toScreen) {
+            case "cards": return <CardList/>;
+
             case "albums": return <AlbumList handleAlbum={handleAlbum} />;
 
             case "album": return <AlbumSlider handleAlbum={handleAlbum} />;
