@@ -3,6 +3,22 @@ import { useEffect } from "react";
 import useRefreshToken from "./useRefreshToken";
 import useAuth from "./useAuth";
 
+// This will Resend the Request on request's AccessToken expired
+//
+// if expired AccessToken detected and not yet the RefreshToken expired..
+// .. then use of the /refresh service to obtain a new AccesshToken and ..
+// .. Resend the Request once again with that new AccesshToken
+//
+//  usage:
+//      const axiosPrivate = useAxiosPrivate();
+//
+//      const response = await axiosPrivate.put('/contacts', {
+//          signal: controller.signal,
+//          contact: formValues
+//      });
+//      console.log(response.data);
+
+
 const useAxiosPrivate = () => {
     const refresh = useRefreshToken();
     const { auth } = useAuth();
